@@ -14,7 +14,7 @@ function NavBarMain() {
             <a href="/">
                 <ImageCustom 
                     src="https://www.tiendauroi.com/wp-content/uploads/2020/02/bhd-star-cinema.png"
-                    className='mobile:hidden md:w-[170px] lg:w-[220px] h-[100%]'
+                    className='mobile:hidden md:w-[200px] lg:w-[220px] h-[100%]'
                 />
             </a>
             
