@@ -7,7 +7,6 @@ function AuthControl() {
     });
     
     useEffect(() => {
-        console.log(document.getElementsByTagName('html'));
         if(isDarkMode)
             document.getElementsByTagName('html')[0].classList.add("dark");
         else    
@@ -25,7 +24,7 @@ function AuthControl() {
                 buttonName="Đăng ký"
             />
 
-            <div class="h-[25px] w-[1px] mx-2 bg-primary-text border-0 dark:bg-gray-700" />
+            <div className="h-[25px] w-[2px] mx-2 bg-primary-text border-0 dark:bg-gray-700" />
 
             <div className='flex justify-center items-center'>
                 <label className="relative inline-flex items-center cursor-pointer">
