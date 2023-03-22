@@ -1,13 +1,51 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ImageCustom from '../Common/ImageCustom'
 import ButtonNav from './ButtonNav'
 import { SiHomebridge } from 'react-icons/si'
 import { FaPallet } from 'react-icons/fa'
 import { AiOutlineFieldTime } from 'react-icons/ai'
+import AuthControl from './AuthControl'
+
+const ArrayMenu = [
+    {
+        id: 1,
+        menuName: 'Trang chủ',
+        link: "/",
+        icon: <SiHomebridge size={22} className='fill-primary-content transition-colors group-hover:fill-primary-text'/>,
+        iconActive: <SiHomebridge size={22} className='fill-primary-text transition-colors'/>
+    },
+    {
+        id: 2,
+        menuName: 'Rạp BHD',
+        link: "/system-cinema",
+        icon: <FaPallet size={22} className='fill-primary-content transition-colors group-hover:fill-primary-text'/>,
+        iconActive: <FaPallet size={22} className='fill-primary-text transition-colors'/>
+    },
+    {
+        id: 3,
+        menuName: 'Lịch chiếu',
+        link: "/showtimes",
+        icon: <AiOutlineFieldTime size={22} className='fill-primary-content transition-colors group-hover:fill-primary-text'/>,
+        iconActive: <AiOutlineFieldTime size={22} className='fill-primary-text transition-colors'/>
+    },
+]
 
 function NavBarMain() {
+    const [menuActive, setMenuAcitve] = useState('')
+
+    useEffect(() => {
+        const windowPath = window.location.pathname;
+
+        if(windowPath === '/')
+            setMenuAcitve('Trang chủ');
+        
+        if(windowPath.includes('/system-cinema'))
+            setMenuAcitve('Rạp BHD');  
+
+    }, [window.location])
+    
     return (
         <header className='flex justify-around items-center px-[15px] py-[10px] shadow-2xl w-full h-[80px] absolute top-0 left-0'>
             {/* Logo */}
@@ -19,29 +57,24 @@ function NavBarMain() {
             </a>
             
             <nav className='flex justify-center items-center flex-shrink-0 h-[100%] w-[auto] mx-[20px]'>
-                <ButtonNav 
-                    menuName="Trang chủ"
-                    icon={<SiHomebridge size={22} className='fill-primary-content transition-colors group-hover:fill-primary-text'/>
-                    }
-                />
-                <ButtonNav 
-                    menuName="Rạp BHD"
-                    icon={<FaPallet size={22} className='fill-primary-content transition-colors group-hover:fill-primary-text'/>
-                    }
-                />
-                <ButtonNav 
-                    menuName="Lịch chiếu"
-                    icon={<AiOutlineFieldTime size={22} className='fill-primary-content transition-colors group-hover:fill-primary-text'/>
-                    }
-                />
+                {
+                    ArrayMenu.map(arrM => {
+                        return <ButtonNav 
+                            key={arrM.id}
+                            menuName={arrM.menuName}
+                            icon={menuActive === arrM.menuName ? arrM.iconActive : arrM.icon}
+                            link={arrM.link}
+                            active={menuActive === arrM.menuName}
+                            onClick={() => {
+                                setMenuAcitve(arrM.menuName)
+                            }}
+                        />
+                    })
+                }
             </nav>
 
             {/* Control User */}
-            <div>
-                <ButtonNav 
-                    menuName="User control"
-                />
-            </div>
+            <AuthControl />
         </header>
     )
 }
