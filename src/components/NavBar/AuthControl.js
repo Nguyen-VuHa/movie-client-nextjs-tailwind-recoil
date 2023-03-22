@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import ButtonCustom from '../Common/ButtonCustom'
 
 function AuthControl() {
-    const [isDarkMode, setIsDarkMode] = useState(() => {
-        return localStorage.getItem('theme') === 'dark' ? true : false
-    });
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    useEffect(() => {
+        setIsDarkMode(localStorage.getItem('theme') === 'dark' ? true : false)
+    }, [])
+    
     
     useEffect(() => {
         if(isDarkMode)

@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useEffect, useState } from 'react'
 import ImageCustom from '../Common/ImageCustom'
 import ButtonNav from './ButtonNav'
@@ -48,7 +47,7 @@ function NavBarMain() {
             setMenuAcitve('Lịch chiếu');  
 
         
-    }, [window.location])
+    }, [])
     
     return (
         <header className='flex justify-around items-center px-[15px] py-[10px] shadow-lg dark:shadow-2xl w-full h-[80px] absolute top-0 left-0'>

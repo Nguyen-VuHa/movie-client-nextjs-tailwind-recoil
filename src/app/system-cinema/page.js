@@ -1,6 +1,3 @@
-import Head from 'next/head'
-import React from 'react'
-
 // write description -> SEO page
 export const metadata = {
     title: 'Rạp chiếu BHD | BHD Star Cineplex',
@@ -11,6 +8,7 @@ export const metadata = {
 }
 
 function SystemCinema() {
+    
     return (
         <div>
             SystemCinema
