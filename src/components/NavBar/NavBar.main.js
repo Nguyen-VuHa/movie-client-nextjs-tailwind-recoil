@@ -13,21 +13,21 @@ const ArrayMenu = [
         id: 1,
         menuName: 'Trang chủ',
         link: "/",
-        icon: <SiHomebridge size={22} className='fill-primary-content transition-colors group-hover:fill-primary-text'/>,
+        icon: <SiHomebridge size={22} className='dark:fill-primary-content transition-colors group-hover:fill-primary-text'/>,
         iconActive: <SiHomebridge size={22} className='fill-primary-text transition-colors'/>
     },
     {
         id: 2,
         menuName: 'Rạp BHD',
         link: "/system-cinema",
-        icon: <FaPallet size={22} className='fill-primary-content transition-colors group-hover:fill-primary-text'/>,
+        icon: <FaPallet size={22} className='dark:fill-primary-content transition-colors group-hover:fill-primary-text'/>,
         iconActive: <FaPallet size={22} className='fill-primary-text transition-colors'/>
     },
     {
         id: 3,
         menuName: 'Lịch chiếu',
         link: "/showtimes",
-        icon: <AiOutlineFieldTime size={22} className='fill-primary-content transition-colors group-hover:fill-primary-text'/>,
+        icon: <AiOutlineFieldTime size={22} className='dark:fill-primary-content transition-colors group-hover:fill-primary-text'/>,
         iconActive: <AiOutlineFieldTime size={22} className='fill-primary-text transition-colors'/>
     },
 ]
@@ -44,10 +44,14 @@ function NavBarMain() {
         if(windowPath.includes('/system-cinema'))
             setMenuAcitve('Rạp BHD');  
 
+        if(windowPath.includes('/showtimes'))
+            setMenuAcitve('Lịch chiếu');  
+
+        
     }, [window.location])
     
     return (
-        <header className='flex justify-around items-center px-[15px] py-[10px] shadow-2xl w-full h-[80px] absolute top-0 left-0'>
+        <header className='flex justify-around items-center px-[15px] py-[10px] shadow-lg dark:shadow-2xl w-full h-[80px] absolute top-0 left-0'>
             {/* Logo */}
             <a href="/">
                 <ImageCustom 

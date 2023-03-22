@@ -5,7 +5,7 @@ import './globals.css'
 
 export default function RootLayout({ children }) {
   return (
-    <body className='bg-primary-bg'>
+    <body className='dark:bg-primary-bg'>
         <NavBarMain />
         <main className='h-[100vh] mt-[80px]'>{children}</main>
         <FooterMain />

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const classTextActive = 'text-primary-text';
-const classBackgroundActive = 'bg-color-hover';
+const classBackgroundActive = 'dark:bg-color-hover';
 
 function ButtonNav({ menuName, icon, link, active, onClick }) {
 
@@ -20,7 +20,7 @@ function ButtonNav({ menuName, icon, link, active, onClick }) {
                     w-[100px] h-full 
                     cursor-pointer 
                     rounded-[6px]
-                hover:bg-color-hover ${active ? classBackgroundActive : ''}
+                dark:hover:bg-color-hover ${active ? classBackgroundActive : ''}
                 `
             }
         >
@@ -28,7 +28,7 @@ function ButtonNav({ menuName, icon, link, active, onClick }) {
             <div 
                 className={`
                 transition-colors 
-                text-center ${active ? classTextActive : 'text-primary-content'} text-[12px] 
+                text-center ${active ? classTextActive : 'dark:text-primary-content'} text-[12px] 
                 font-semibold font-primary 
                 group-hover:text-primary-text mt-1
                 `}
