@@ -50,16 +50,16 @@ function NavBarMain() {
     }, [])
     
     return (
-        <header className='flex justify-around items-center px-[15px] py-[10px] shadow-lg dark:shadow-2xl w-full h-[80px] absolute top-0 left-0'>
+        <header className='flex justify-around max-md:justify-between items-center px-[15px] py-[10px] shadow-lg dark:shadow-2xl w-full h-[80px] absolute top-0 left-0'>
             {/* Logo */}
-            <a href="/">
+            <a href="/" className='max-md:hidden'>
                 <ImageCustom 
                     src="https://www.tiendauroi.com/wp-content/uploads/2020/02/bhd-star-cinema.png"
-                    className='mobile:hidden md:w-[200px] lg:w-[220px] h-[100%]'
+                    className='mobile:hidden max-md:w-[200px] lg:w-[220px] h-[100%]'
                 />
             </a>
             
-            <nav className='flex justify-center items-center flex-shrink-0 h-[100%] w-[auto] mx-[20px]'>
+            <nav className='flex justify-center items-center flex-shrink-0 h-[100%] w-[auto]'>
                 {
                     ArrayMenu.map(arrM => {
                         return <ButtonNav 
