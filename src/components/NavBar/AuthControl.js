@@ -6,10 +6,7 @@ function AuthControl() {
     const groupBoxRef = useRef(null);
     const buttonMenuRef = useRef(null);
     
-    const [isDarkMode, setIsDarkMode] = useState(() => {
-        return localStorage.getItem('theme') === 'dark' ? true : false
-    });
-
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const [toggleMenu, setToggleMenu] = useState(false)
 
     useLayoutEffect(() => {
@@ -63,10 +60,9 @@ function AuthControl() {
                 >
                     <TiThMenu 
                         size={22} 
-                        className={`dark:fill-primary-text 
-                        fill-primary-text transition-all duration-300
+                        className={`transition-all duration-300
                         group-hover:fill-primary-bg 
-                        ${toggleMenu ? 'fill-primary-bg dark:fill-primary-bg' : ''}
+                        ${toggleMenu ? 'fill-primary-bg dark:fill-primary-bg' : 'dark:fill-primary-text fill-primary-text'}
                         `} 
                     />
                 </button>

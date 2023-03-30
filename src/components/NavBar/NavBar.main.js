@@ -34,6 +34,7 @@ const ArrayMenu = [
 function NavBarMain() {
     const [menuActive, setMenuAcitve] = useState('')
 
+    // render: check url window -> set menu active
     useEffect(() => {
         const windowPath = window.location.pathname;
 
