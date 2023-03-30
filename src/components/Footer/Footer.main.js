@@ -6,7 +6,7 @@ import Rules from './Rules'
 
 function FooterMain() {
     return (
-        <footer className='grid grid-cols-4 gap-1 max-md:grid-cols-2 max-sm:grid-cols-1 m-0 px-[200px] max-lg:px-[50px] max-md:px-[50px] max-sm:px-[20px]'>
+        <footer className='grid grid-cols-4 gap-1 max-md:grid-cols-2 max-sm:grid-cols-1 m-0 px-[150px] max-lg:px-[50px] max-md:px-[50px] max-sm:px-[20px]'>
             <Rules />
             <ConnectBHD />
             <CustomerCare />

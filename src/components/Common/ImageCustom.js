@@ -33,7 +33,7 @@ function ImageCustom({ src, alt, className, style}) {
                 src={src}
                 alt={alt}
                 layout='fill'
-                onLoad={handleImageLoaded}
+                onLoadingComplete={handleImageLoaded}
                 style={isLoading ? { display: 'none' } : { display: 'block', backgroundSize: "cover" }}
                 unoptimized
             />

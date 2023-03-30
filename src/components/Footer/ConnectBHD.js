@@ -1,5 +1,4 @@
 import React from 'react'
-import Item from './Item'
 import Title from './Title'
 import { FaFacebookSquare, FaInstagram } from 'react-icons/fa'
 import { IoLogoYoutube } from 'react-icons/io'

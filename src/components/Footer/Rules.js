@@ -1,7 +1,5 @@
 import React from 'react'
-import { BiChevronsRight } from 'react-icons/bi'
 import Item from './Item'
-
 import Title from './Title'
 
 function Rules() {
