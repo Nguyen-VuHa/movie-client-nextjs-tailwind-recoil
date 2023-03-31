@@ -6,11 +6,11 @@ function ButtonCustom({ className, buttonName, onClick, type }) {
             onClick={() => {
                 onClick && onClick()
             }}
-            type={type}
+            type={type || 'button'}
             className={`
             transition-colors 
             whitespace-nowrap
-            text-primary-bg font-primary font-semibold bg-primary-text hover:bg-primary-text/90 focus:outline-none rounded-md text-sm px-5 py-2.5 text-center inline-flex items-center ${className || ''}`}
+            text-primary-bg font-primary font-semibold bg-primary-text hover:bg-primary-text/90 focus:outline-none rounded-md text-sm px-5 py-2.5 text-center inline-flex justify-center items-center ${className || ''}`}
         >
             { buttonName }
         </button>

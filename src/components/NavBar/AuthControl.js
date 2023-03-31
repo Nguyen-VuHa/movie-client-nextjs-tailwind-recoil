@@ -1,25 +1,34 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import ButtonCustom from '../Common/ButtonCustom'
 import { TiThMenu } from 'react-icons/ti'
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { globalState } from '@/atoms/globalState';
+import { modalState } from '@/atoms/modalState';
 
 function AuthControl() {
-    const groupBoxRef = useRef(null);
-    const buttonMenuRef = useRef(null);
-    
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const groupBoxRef = useRef(null)
+    const buttonMenuRef = useRef(null)
+
+    const { darkMode } = useRecoilValue(globalState)
+    const [global, setGlobal] = useRecoilState(globalState)
+    const [modal, setModal] = useRecoilState(modalState)
+
     const [toggleMenu, setToggleMenu] = useState(false)
 
     useLayoutEffect(() => {
-        setIsDarkMode(localStorage.getItem('theme') === 'dark' ? true : false)
+        setGlobal({
+            ...global,
+            darkMode: localStorage.getItem('theme') === 'dark' ? true : false
+        })
     }, [])
     
     
     useEffect(() => {
-        if(isDarkMode)
-            document.getElementsByTagName('html')[0].classList.add("dark");
+        if(darkMode)
+            document.getElementsByTagName('html')[0].classList.add("dark")
         else    
-            document.getElementsByTagName('html')[0].classList.remove('dark');
-    }, [isDarkMode]);
+            document.getElementsByTagName('html')[0].classList.remove('dark')
+    }, [darkMode]);
 
 
     useEffect(() => {
@@ -27,13 +36,13 @@ function AuthControl() {
             if(buttonMenuRef.current && !buttonMenuRef.current.contains(e.target))
             { 
                 if(groupBoxRef && !groupBoxRef.current.contains(e.target)) {
-                    setToggleMenu(false);
+                    setToggleMenu(false)
                 }
             }
         });
 
 
-        return () => document.removeEventListener('click', () => {});
+        return () => document.removeEventListener('click', () => {})
     }, [])
     
     
@@ -44,7 +53,7 @@ function AuthControl() {
                 <button 
                     ref={buttonMenuRef}
                     onClick={() => {
-                        setToggleMenu(!toggleMenu);
+                        setToggleMenu(!toggleMenu)
                     }}
                     className={`
                     group
@@ -76,10 +85,18 @@ function AuthControl() {
             >
                 <ButtonCustom 
                     buttonName="Đăng nhập"
+                    onClick={() => setModal({
+                        ...modal,
+                        modalLogin: true,
+                    })}
                 />
                 <ButtonCustom 
                     className='ml-1'
                     buttonName="Đăng ký"
+                    onClick={() => setModal({
+                        ...modal,
+                        modalRegister: true,
+                    })}
                 />
 
                 <div className="h-[25px] w-[2px] mx-2 bg-primary-text border-0 dark:bg-gray-700" />
@@ -89,13 +106,17 @@ function AuthControl() {
                         <input 
                             type="checkbox" 
                             onChange={() => {
-                                setIsDarkMode(!isDarkMode)
-                                if(isDarkMode)
+                                setGlobal({
+                                    ...global,
+                                    darkMode: !darkMode
+                                })
+
+                                if(darkMode)
                                     localStorage.setItem('theme', 'light')
                                 else
                                     localStorage.setItem('theme', 'dark')
                             }} 
-                            checked={isDarkMode} 
+                            checked={darkMode} 
                             value="" 
                             className="sr-only peer" 
                         />
