@@ -13,7 +13,8 @@ function ButtonNav({ menuName, icon, link, active, onClick }) {
             }}
             href={link || "#"}
             className={
-                `
+                `   
+                    max-sm:w-[75px]
                     transition-colors
                     group flex flex-col justify-center items-center
                     w-[100px] h-full 

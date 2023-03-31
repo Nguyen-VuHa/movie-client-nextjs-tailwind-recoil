@@ -39,13 +39,13 @@ function ModalLoginMain() {
                     }}
                 >
                     <div>
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                         <InputCustom 
                             placeholder="xxx@gmail.com"
                         />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mật khẩu</label>
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mật khẩu</label>
                         <InputCustom 
                             type="password"
                             placeholder="xxxxxx"

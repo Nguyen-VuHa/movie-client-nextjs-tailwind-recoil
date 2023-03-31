@@ -31,7 +31,7 @@ function ModalRegisterMain() {
             <div className="px-6 py-6 lg:px-8">
                 <h3 className="mb-4 text-xl font-bold text-primary-text uppercase font-primary">Đăng Ký Thành Viên</h3>
                 <form 
-                    className="grid grid-cols-2 gap-3"
+                    className="grid grid-cols-2 gap-3 max-sm:grid-cols-1 max-sm:flex-col-reverse"
                     onSubmit={(e) => {
                         e.preventDefault();
                     }}
