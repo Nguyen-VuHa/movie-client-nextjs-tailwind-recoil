@@ -5,23 +5,22 @@ const classNames = {
     success: "bg-primary-text/50 border-primary-text text-primary-text",
 }
 
-function InputCustom({ type, id, className, placeholder, errorMessage, value, onChange, ...rest }, ref) {
+function InputAreaCustom({ type, id, className, placeholder, errorMessage, value, onChange, ...rest }) {
     return (
         <>
-            <input 
-                ref={ref}
+            <textarea 
                 type={type || 'text'}
                 id={id || ''}
                 className={`${errorMessage ? classNames.error : value && !errorMessage ? classNames.success : 'dark:placeholder-gray-400 dark:text-white dark:border-gray-500'} border
                 text-sm rounded-[6px] outline-none font-medium
-                block w-full p-2.5 dark:bg-gray-600
+                block w-full p-2.5 dark:placeholder-gray-400 dark:bg-gray-600
                 ${className || ''}`}
                 placeholder={placeholder || 'Nhập text...'}
                 value={value}
                 onChange={(e) => {
                     onChange && onChange(e.target.value)
                 }}
-                {...rest}
+                { ...rest}
             />
             {
                 errorMessage && <small className="mt-2 italic font-medium text-red-600 dark:text-red-500">
@@ -32,4 +31,4 @@ function InputCustom({ type, id, className, placeholder, errorMessage, value, on
     )
 }
 
-export default React.memo(React.forwardRef(InputCustom))
+export default React.memo(React.forwardRef(InputAreaCustom))
