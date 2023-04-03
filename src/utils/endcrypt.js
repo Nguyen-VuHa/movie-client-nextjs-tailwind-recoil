@@ -45,3 +45,39 @@ export const handleEnCodeString = (str, arrHash) => {
     
     return strHash.trim()
 }
+
+export const handleEnCodeKey = (strKey) => {
+    let arrStr = strKey.split('')
+    let arrHash = []
+
+    arrStr.forEach(arr => {
+        arrHash.push(handleReturnEnCode(arr))
+    });
+    
+    return arrHash
+}
+
+const handleReturnEnCode = (str) => {
+    switch (str) {
+        case '0':
+            return process.env.NEXT_PUBLIC_END_CODE_0
+        case '1':
+            return process.env.NEXT_PUBLIC_END_CODE_1
+        case '2':
+            return process.env.NEXT_PUBLIC_END_CODE_2
+        case '3':
+            return process.env.NEXT_PUBLIC_END_CODE_3
+        case '4':
+            return process.env.NEXT_PUBLIC_END_CODE_4
+        case '5':
+            return process.env.NEXT_PUBLIC_END_CODE_5
+        case '6':
+            return process.env.NEXT_PUBLIC_END_CODE_6
+        case '7':
+            return process.env.NEXT_PUBLIC_END_CODE_7
+        case '8':
+            return process.env.NEXT_PUBLIC_END_CODE_8
+        case '9':
+            return process.env.NEXT_PUBLIC_END_CODE_9
+    }
+}

@@ -1,4 +1,4 @@
-import { authState } from '@/atoms/authState'
+import { errorMessageRegisterState, registerState } from '@/atoms/authState'
 import InputAreaCustom from '@/components/Common/InputAreaCustom'
 import InputCustom from '@/components/Common/InputCustom'
 import { handleRegexIsNumber } from '@/utils/regexIsNumber'
@@ -7,11 +7,11 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import dayjs from 'dayjs'
 
 export const InputFullName = () => {
-    const { register, errMessageRegister } = useRecoilValue(authState)
-    const { fullName } = register
-    const { errFullName } = errMessageRegister
+    const { fullName } = useRecoilValue(registerState)
+    const { errFullName } = useRecoilValue(errorMessageRegisterState)
 
-    const [auth, setAuth] = useRecoilState(authState)
+    const [register, setRegister] = useRecoilState(registerState)
+    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
 
     return (
         <div className='mb-2'>
@@ -22,21 +22,15 @@ export const InputFullName = () => {
                 placeholder="Nguyễn Văn A..."
                 value={fullName}
                 onChange={(text) => {
-                    setAuth({
-                        ...auth,
-                        register: {
-                            ...register,
-                            fullName: text,
-                        }
+                    setRegister({
+                        ...register,
+                        fullName: text,
                     })
 
                     if(errFullName) {
-                        setAuth({
-                            ...auth,
-                            errMessageRegister: {
-                                ...errMessageRegister,
-                                errFullName: '',
-                            }
+                        setErrRegister({
+                            ...errRegister,
+                            errFullName: '',
                         })
                     }
                 }}
@@ -48,11 +42,11 @@ export const InputFullName = () => {
 
 
 export const InputNumberPhone = () => {
-    const { register, errMessageRegister } = useRecoilValue(authState)
-    const { numberPhone } = register
-    const { errNumberPhone } = errMessageRegister
+    const { numberPhone } = useRecoilValue(registerState)
+    const { errNumberPhone } = useRecoilValue(errorMessageRegisterState)
 
-    const [auth, setAuth] = useRecoilState(authState)
+    const [register, setRegister] = useRecoilState(registerState)
+    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
 
     return (
         <div className='mb-2'>
@@ -64,30 +58,21 @@ export const InputNumberPhone = () => {
                 value={numberPhone}
                 onChange={(text) => {
                     if(text && handleRegexIsNumber(text))
-                        setAuth({
-                            ...auth,
-                            register: {
-                                ...register,
-                                numberPhone: text,
-                            }
+                        setRegister({
+                            ...register,
+                            numberPhone: text,
                         })
                     
                     if(text === '')
-                        setAuth({
-                            ...auth,
-                            register: {
-                                ...register,
-                                numberPhone: '',
-                            }
+                        setRegister({
+                            ...register,
+                            numberPhone: '',
                         })
 
                     if(errNumberPhone) {
-                        setAuth({
-                            ...auth,
-                            errMessageRegister: {
-                                ...errMessageRegister,
-                                errNumberPhone: '',
-                            }
+                        setErrRegister({
+                            ...errRegister,
+                            errNumberPhone: '',
                         })
                     }
                 }}
@@ -99,11 +84,11 @@ export const InputNumberPhone = () => {
 
 
 export const InputBirthDay = () => {
-    const { register, errMessageRegister } = useRecoilValue(authState)
-    const { birthDay } = register
-    const { errBirthDay } = errMessageRegister
+    const { birthDay } = useRecoilValue(registerState)
+    const { errBirthDay } = useRecoilValue(errorMessageRegisterState)
 
-    const [auth, setAuth] = useRecoilState(authState)
+    const [register, setRegister] = useRecoilState(registerState)
+    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
 
     return (
         <div className='mb-2'>
@@ -114,21 +99,15 @@ export const InputBirthDay = () => {
                 type={"date"}
                 value={birthDay}
                 onChange={(text) => {
-                    setAuth({
-                        ...auth,
-                        register: {
-                            ...register,
-                            birthDay: dayjs(new Date(text)).format('YYYY-MM-DD'),
-                        }
+                    setRegister({
+                        ...register,
+                        birthDay: dayjs(new Date(text)).format('YYYY-MM-DD'),
                     })
 
                     if(errBirthDay) {
-                        setAuth({
-                            ...auth,
-                            errMessageRegister: {
-                                ...errMessageRegister,
-                                errBirthDay: '',
-                            }
+                        setErrRegister({
+                            ...errRegister,
+                            errBirthDay: '',
                         })
                     }
                 }}
@@ -139,11 +118,12 @@ export const InputBirthDay = () => {
 }
 
 export const InputAddress = () => {
-    const { register, errMessageRegister } = useRecoilValue(authState)
-    const { address } = register
-    const { errAddress } = errMessageRegister
+    const { address } = useRecoilValue(registerState)
+    const { errAddress } = useRecoilValue(errorMessageRegisterState)
 
-    const [auth, setAuth] = useRecoilState(authState)
+    const [register, setRegister] = useRecoilState(registerState)
+    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
+
 
     return (
         <div className='mb-2'>
@@ -154,21 +134,15 @@ export const InputAddress = () => {
                 placeholder="số 24, Phường A,..."
                 value={address}
                 onChange={(text) => {
-                    setAuth({
-                        ...auth,
-                        register: {
-                            ...register,
-                            address: text,
-                        }
+                    setRegister({
+                        ...register,
+                        address: text,
                     })
 
                     if(errAddress) {
-                        setAuth({
-                            ...auth,
-                            errMessageRegister: {
-                                ...errMessageRegister,
-                                errAddress: '',
-                            }
+                        setErrRegister({
+                            ...errRegister,
+                            errAddress: '',
                         })
                     }
                 }}
@@ -179,11 +153,12 @@ export const InputAddress = () => {
 }
 
 export const InputEmail = () => {
-    const { register, errMessageRegister } = useRecoilValue(authState)
-    const { email } = register
-    const { errEmail } = errMessageRegister
+    const { email } = useRecoilValue(registerState)
+    const { errEmail } = useRecoilValue(errorMessageRegisterState)
 
-    const [auth, setAuth] = useRecoilState(authState)
+    const [register, setRegister] = useRecoilState(registerState)
+    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
+
 
     return (
         <div className='mb-2'>
@@ -194,21 +169,15 @@ export const InputEmail = () => {
                 placeholder="xxx@gmail.com..."
                 value={email}
                 onChange={(text) => {
-                    setAuth({
-                        ...auth,
-                        register: {
-                            ...register,
-                            email: text,
-                        }
+                    setRegister( {
+                        ...register,
+                        email: text,
                     })
 
                     if(errEmail) {
-                        setAuth({
-                            ...auth,
-                            errMessageRegister: {
-                                ...errMessageRegister,
-                                errEmail: '',
-                            }
+                        setErrRegister({
+                            ...errRegister,
+                            errEmail: '',
                         })
                     }
                 }}
@@ -221,11 +190,11 @@ export const InputEmail = () => {
 
 
 export const InputPassword = () => {
-    const { register, errMessageRegister } = useRecoilValue(authState)
-    const { password } = register
-    const { errPassword } = errMessageRegister
+    const { password } = useRecoilValue(registerState)
+    const { errPassword } = useRecoilValue(errorMessageRegisterState)
 
-    const [auth, setAuth] = useRecoilState(authState)
+    const [register, setRegister] = useRecoilState(registerState)
+    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
 
 
     return (
@@ -238,21 +207,15 @@ export const InputPassword = () => {
                 type="password"
                 value={password}
                 onChange={(text) => {
-                    setAuth({
-                        ...auth,
-                        register: {
-                            ...register,
-                            password: text,
-                        }
+                    setRegister({
+                        ...register,
+                        password: text,
                     })
 
                     if(errPassword) {
-                        setAuth({
-                            ...auth,
-                            errMessageRegister: {
-                                ...errMessageRegister,
-                                errPassword: '',
-                            }
+                        setErrRegister({
+                            ...errRegister,
+                            errPassword: '',
                         })
                     }
                 }}
@@ -263,11 +226,11 @@ export const InputPassword = () => {
 }
 
 export const InputConfirmPassword = () => {
-    const { register, errMessageRegister } = useRecoilValue(authState)
-    const { confirmPassword } = register
-    const { errConfirmPassword } = errMessageRegister
+    const { confirmPassword } = useRecoilValue(registerState)
+    const { errConfirmPassword } = useRecoilValue(errorMessageRegisterState)
 
-    const [auth, setAuth] = useRecoilState(authState)
+    const [register, setRegister] = useRecoilState(registerState)
+    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
 
     return (
         <div className='mb-2'>
@@ -279,21 +242,15 @@ export const InputConfirmPassword = () => {
                 type="password"
                 value={confirmPassword}
                 onChange={(text) => {
-                    setAuth({
-                        ...auth,
-                        register: {
-                            ...register,
-                            confirmPassword: text,
-                        }
+                    setRegister({
+                        ...register,
+                        confirmPassword: text,
                     })
 
                     if(errConfirmPassword) {
-                        setAuth({
-                            ...auth,
-                            errMessageRegister: {
-                                ...errMessageRegister,
-                                errConfirmPassword: '',
-                            }
+                        setErrRegister({
+                            ...errRegister,
+                            errConfirmPassword: '',
                         })
                     }
                 }}
