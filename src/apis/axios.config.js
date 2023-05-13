@@ -12,7 +12,7 @@ const axiosClient = axios.create({
 });
 
 function getAccessToken(){
-    return localStorage.getItem('accessToken')
+    return localStorage.getItem('accessToken') || ''
 }
 
 axiosClient.interceptors.request.use(async (config) => {

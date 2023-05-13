@@ -38,7 +38,6 @@ const ArrayMenu = [
 function NavBarMain() {
     const [menuActive, setMenuAcitve] = useState('')
 
-
     const { modalLogin, modalRegister } = useRecoilValue(modalState)
 
     // render: check url window -> set menu active
@@ -46,17 +45,15 @@ function NavBarMain() {
         const windowPath = window.location.pathname;
 
         if(windowPath === '/')
-            setMenuAcitve('Trang chủ');
+            setMenuAcitve('Trang chủ')
         
         if(windowPath.includes('/system-cinema'))
-            setMenuAcitve('Rạp BHD');  
+            setMenuAcitve('Rạp BHD')
 
         if(windowPath.includes('/showtimes'))
-            setMenuAcitve('Lịch chiếu');  
-
-        
+            setMenuAcitve('Lịch chiếu')
     }, [])
-    
+
     return (
         <>
             {/* Modal login */}
@@ -64,7 +61,16 @@ function NavBarMain() {
             {/* Modal Register */}
             { modalRegister && <ModalRegisterMain /> }
 
-            <header className='flex justify-around max-md:justify-between items-center px-[15px] py-[10px] shadow-lg dark:shadow-2xl w-full h-[80px] absolute top-0 left-0'>
+            <header 
+                className={`
+                flex justify-around 
+                max-md:justify-between 
+                items-center px-[15px] py-[10px] 
+                shadow-lg dark:shadow-2xl w-full h-[80px] 
+                top-0 left-0 bg-white dark:bg-[#121825]
+                fixed z-[999]
+            `}
+            >
                 
                 {/* Logo */}
                 <a href="/" className='max-md:hidden'>

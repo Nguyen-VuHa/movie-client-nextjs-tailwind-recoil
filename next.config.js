@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const path = require('path');
+
 const nextConfig = {
   experimental: {
     appDir: true,
@@ -9,6 +12,9 @@ const nextConfig = {
   },
   future: {
     webpack5: true,
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
   },
 }
 
