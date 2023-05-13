@@ -7,7 +7,6 @@ import { handleValidateFormRegister } from '@/validators/register'
 import { errorMessageRegisterState, initalErrMessageRegisterState, initalRegisterState, registerState } from '@/atoms/authState'
 import { handleCreateAccount } from '@/selectors/authSelector'
 import { toast } from 'react-toastify'
-import { STATUS_SUCCESSED } from '@/constants/constants'
 
 function FormInput() {
     const [modal, setModal] = useRecoilState(modalState)
