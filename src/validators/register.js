@@ -1,17 +1,22 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
 
+// Error messages for password validation
 const errorPassword = {
     min: 'Mật khẩu tối tiểu 8 kí tự.',
-    max: 'Mật khẩu tối đa không vượt quá 50 kí tự'
-}
+    max: 'Mật khẩu tối đa không vượt quá 50 kí tự',
+};
 
+// Function to generate an error message for empty fields
 const handleEmptyText = (name) => {
-    return `${name} không được rỗng`
-}
+    return `${name} không được rỗng`;
+};
 
-const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
+// Regular expression for phone number validation
+const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
 
+// Function to handle form validation for the registration form
 export const handleValidateFormRegister = async (data) => {
+    // Defining the validation schema using yup
     const yupObjectData = yup.object().shape({
         email: yup.string().email('Email không hợp lệ!').required(handleEmptyText('Email')),
         password: yup.string().min(8, errorPassword.min).max(50, errorPassword.max).required(handleEmptyText('Mật khẩu')),
@@ -20,25 +25,27 @@ export const handleValidateFormRegister = async (data) => {
         numberPhone: yup.string().matches(phoneRegExp, 'Số điện thoại không hợp lệ').required(handleEmptyText('Số điện thoại')),
         birthDay: yup.date().nullable().min(new Date(1900, 0, 1), 'Ngày sinh không vượt quá năm 1900!').max(new Date(), 'Ngày sinh không đến từ tương lai!').required(handleEmptyText('Ngày sinh nhật')),
         address: yup.string().max(1000, 'Địa chỉ không được vượt quá 1000 ký tự').required(handleEmptyText('Địa chỉ')),
-    })
+    });
 
+    // Validating the data against the schema
     const res = await yupObjectData.validate(data, { abortEarly: false }).then(() => {
         return {
-            status: true,
-            objError: {},
-        }
+            status: true,    // Validation status (true: data is valid)
+            objError: {},    // Empty object for errors (no errors)
+        };
     }).catch((err) => {
+        // Handling validation errors and populating the objError object with error messages
         let objError = {};
 
         err.inner.forEach((error) => {
-            objError[error.path] = error.message
+            objError[error.path] = error.message;
         });
 
         return {
-            status: false,
-            objError: objError,
-        }
-    })
-    
-    return res;
-}
+            status: false,    // Validation status (false: data is invalid)
+            objError: objError,    // Object containing error messages for each field
+        };
+    });
+
+    return res; // Returning the validation result object
+};
