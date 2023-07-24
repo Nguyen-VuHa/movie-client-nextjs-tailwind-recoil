@@ -28,9 +28,9 @@ function FormInput() {
     }
 
     const handleSubmitForm = async () => {
-        const { status, objError } = await handleValidateFormRegister(register)
+        const result = await handleValidateFormRegister(register)
 
-        if(status) 
+        if(result && result?.status) 
         {
             // handle register
             setIsLoading(true);
@@ -42,7 +42,7 @@ function FormInput() {
                 toast.warn(result?.message)
             } 
             
-            if(result.status === 'SUCCESS') {
+            if(result?.status === 'SUCCESS') {
                 toast.success(result?.message)
                 setRegister(initalRegisterState)
                 setErrRegister(initalErrMessageRegisterState)

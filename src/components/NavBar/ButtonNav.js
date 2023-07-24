@@ -20,7 +20,7 @@ function ButtonNav({ menuName, icon, link, active, onClick }) {
                     w-[100px] h-full 
                     cursor-pointer 
                     rounded-[6px]
-                dark:hover:bg-color-hover ${active ? classBackgroundActive : ''}
+                    :is(dark:hover:bg-color-hover) ${active ? classBackgroundActive : ''}
                 `
             }
         >

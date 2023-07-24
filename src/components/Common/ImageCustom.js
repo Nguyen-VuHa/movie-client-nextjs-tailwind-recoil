@@ -36,6 +36,7 @@ function ImageCustom({ src, alt, className, style}) {
                 onLoadingComplete={handleImageLoaded}
                 style={isLoading ? { display: 'none' } : { display: 'block', backgroundSize: "cover" }}
                 unoptimized
+                priority
             />
        </div>
     )

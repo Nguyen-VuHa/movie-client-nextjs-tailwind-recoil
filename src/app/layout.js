@@ -2,7 +2,7 @@
 import FooterMain from '@/components/Footer/Footer.main'
 import NavBarMain from '@/components/NavBar/NavBar.main'
 import RecoilProvider from '@/components/RecoilProvider/RecoilProvider'
-import './globals.css'
+import './globals.scss'
 import 'dayjs/locale/vi'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
