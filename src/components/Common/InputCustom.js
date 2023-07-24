@@ -2,7 +2,7 @@ import React from 'react'
 
 const classNames = {
     error: "bg-red-50 border-red-500 text-red-900 placeholder-red-700 dark:text-red-500 dark:placeholder-red-500",
-    success: "bg-primary-text/50 border-primary-text text-primary-text",
+    success: "bg-success-text/10 border-success-text text-success-text",
 }
 
 function InputCustom({ type, id, className, placeholder, errorMessage, value, onChange, ...rest }, ref) {
