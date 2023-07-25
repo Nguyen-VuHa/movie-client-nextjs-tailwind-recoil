@@ -1,0 +1,39 @@
+
+
+.warapper-content {
+    display: -webkit-box;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+
+
+    .item-carousel {
+        width: 250px;
+        height: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        user-select: none;
+
+        img {
+            -webkit-user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    }
+
+    .item-carousel:first-child {
+        margin-right: 13px;
+    }
+
+    .item-carousel + .item-carousel {
+        margin-right: 13px;
+    }
+}
+
+.warapper-content::-webkit-scrollbar {
+    display: none;
+}
+
+

@@ -1,3 +1,4 @@
+import CarouselCustom from "@/components/Common/Carousel/CarouselCustom"
 import Hero from "@/components/HomePage/Hero"
 import MovieCurrent from "@/components/HomePage/MovieCurrent"
 
@@ -15,7 +16,8 @@ export default function HomePage() {
     return (
         <div>
             <Hero />
-            <MovieCurrent />
+            {/* <MovieCurrent /> */}
+            <CarouselCustom />
         </div>
     )
 }

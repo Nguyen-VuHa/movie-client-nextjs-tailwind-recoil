@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import ButtonCustom from '@/components/Common/ButtonCustom'
 import { useRecoilState } from 'recoil'
@@ -25,6 +25,20 @@ function FormInput() {
         })
     }
 
+    useEffect(() => {
+        if(!login.ipAddress) {
+            fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                setLogin({
+                    ...login,
+                    ipAddress: data.ip
+                })
+            })
+            .catch(error => console.log(error))
+        }
+    })
+
     // handle submit login
     const handleLogin = async () => {
         const { status, objError } = await handleValidateFormLogin(login) 
@@ -33,6 +47,8 @@ function FormInput() {
         {
             // handle register
             setIsLoading(true);
+
+            console.log(login)
             
            const result = await handleLoginAccount(login);
 

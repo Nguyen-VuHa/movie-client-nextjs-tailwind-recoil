@@ -23,20 +23,22 @@ export const handleEnCodeString = (str, arrHash) => {
             let gnP = generatorPosition(index, i * position)
             strHash += [str.slice(index, i * position).slice(0, gnP), arrHash[i], str.slice(index, i * position).slice(gnP)].join('')
             index = i * position
-
+      
             if(i === arrHash.length) {
                 strHash += str.slice(i * position, str.length)
             }
         }
         
     } else {
+        strHash = ''
+        
         let position = Math.floor(str.length / arrHash.length);
         let index = 0;
         for(let i = 1; i <= arrHash.length; i++) {
             let gnP = generatorPosition(index, i * position);
             strHash += [str.slice(index, i * position).slice(0, gnP), arrHash[i], str.slice(index, i * position).slice(gnP)].join('');
             index = i * position;
-
+            
             if(i === arrHash.length) {
                 strHash += str.slice(i * position, str.length);
             }

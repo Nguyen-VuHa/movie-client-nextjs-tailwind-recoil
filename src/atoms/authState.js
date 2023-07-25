@@ -35,6 +35,7 @@ export const errorMessageRegisterState = atom({
 export const initialLoginState = {
     email: '',
     password: '',
+    ipAddress: '',
 }
 
 export const initialErrMessageLoginState = {

@@ -53,6 +53,7 @@ function FormInput() {
 
             setIsLoading(false);
         } else {
+            const { objError } = result
             setErrRegister( {
                 ...errRegister,
                 errEmail: objError.email || '',

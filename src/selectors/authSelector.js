@@ -37,7 +37,7 @@ export const handleLoginAccount = async (data) => {
         let dataEncrypt = `${handleEnCodeString(strData, arrHash)}.${keyTimeStr}` // endcode with arrHash
 
         const response = await authApi.loginAccount({ data: dataEncrypt })
-        
+
         return response
     } catch (error) {
         return error?.response?.data;
