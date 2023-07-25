@@ -1,5 +1,6 @@
 import { atom } from "recoil";
 
+// Register
 export const initalRegisterState = {
     email: '',
     password: '',
@@ -28,4 +29,25 @@ export const registerState = atom({
 export const errorMessageRegisterState = atom({
     key: 'errorMessageRegisterState', 
     default: initalErrMessageRegisterState,
+})
+
+// Login
+export const initialLoginState = {
+    email: '',
+    password: '',
+}
+
+export const initialErrMessageLoginState = {
+    errEmail: '',
+    errPassword: '',
+}
+
+export const loginState = atom({
+    key: 'loginState',
+    default: initialLoginState,
+})
+
+export const errorMessageLoginState = atom({
+    key: 'errorMessageLoginState',
+    default: initialErrMessageLoginState,
 })

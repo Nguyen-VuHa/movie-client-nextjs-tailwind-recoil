@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
             />
             <RecoilProvider>
                 <NavBarMain />
-                <main className='h-[100vh] mt-[80px]'>{children}</main>
+                <main className='mt-[80px]'>{children}</main>
                 <FooterMain />
             </RecoilProvider>
         </body>
