@@ -19,6 +19,7 @@ module.exports = {
         'success-text': "#44f275",
         'color-hover': "#262c37",
         'primary-content': "#a6b2c9",
+        'orange-txt': "#f15a22",
       },
       screens: {
         'mobile': '400px', // => @media (min-width: 640px) { ... }

@@ -48,23 +48,13 @@ function Hero() {
                     <ImageCustom 
                         className="
                             object-cover 
-                            min-w-[300px] max-w-[380px] w-[100%]
-                            h-[400px] max-sm:h-[400px]
+                            min-w-[300px] max-w-[350px] w-[100%]
+                            h-[420px] max-sm:h-[400px]
                             overflow-hidden shrink-0
                         " 
                         src="https://res.cloudinary.com/cgv-vi-t-nam/image/upload/v1640167813/poster_movie/sy5rqnq9orcv3bqj7f74.jpg"
                         alt="" 
                     />
-                    
-                    {/* <img 
-                        className="
-                            object-cover 
-                            rounded-md h-[400px] max-sm:h-[400px]
-                            overflow-hidden shrink-0
-                        " 
-                        src="https://res.cloudinary.com/cgv-vi-t-nam/image/upload/v1640167813/poster_movie/sy5rqnq9orcv3bqj7f74.jpg"
-                        alt="" 
-                    /> */}
                     <div className="flex flex-col justify-start p-4 leading-normal ml-5 max-sm:m-0 max-sm:p-2">
                         <h2 className="mb-3 text-3xl font-bold tracking-tight text-gray-900 dark:text-primary-content uppercase max-sm:text-center">
                             The Escape Room 2
@@ -101,7 +91,7 @@ function Hero() {
                         </div>
                         <div className='w-full flex items-start mb-2 max-sm:flex-col'>
                             <h3 className="mb-2 min-w-[120px] shrink-0 text-1xl font-bold tracking-tight text-gray-900 dark:text-primary-content mr-5">Chi tiết</h3>
-                            <p className="line-clamp-3 font-normal text-gray-700/90 dark:text-primary-content text-start max-w-[70%]">
+                            <p className="line-clamp-3 font-normal text-gray-700/90 dark:text-primary-content text-start max-w-[70%] max-sm:max-w-[100%]">
                                 Căn Phòng Tử Thần 2: Cái Chết Trở Lại - Escape Room: Tournament of Champions (2021) là bộ phim thuộc thể loại kinh dị, tâm lý Mỹ năm 2021 do Adam Robitel chịu trách nhiệm chỉ đạo, với phần kịch bản được chắp bút bởi Will Honley, Maria Melnik, Daniel Tuch và Oren Uziel.
                                 Bộ phim có sự tham gia của Taylor Russell , Logan Miller và Deborah Ann Woll với các vai diễn trong phần phim trước, cùng với đó là Indya Moore , Holland Roden , Thomas Cocquerel và Carlito Olivero.
                             </p>

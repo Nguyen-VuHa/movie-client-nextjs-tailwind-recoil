@@ -25,19 +25,19 @@ function MovieCurrent() {
                 },
                 '@0.75': {
                     slidesPerView: 2,
-                    spaceBetween: 20,
+                    spaceBetween: 10,
                 },
                 '@1.00': {
                     slidesPerView: 4,
-                    spaceBetween: 20,
+                    spaceBetween: 10,
                 },
                 '@1.50': {
                     slidesPerView: 5,
-                    spaceBetween: 30,
+                    spaceBetween: 10,
                 },
               }}
               autoplay={{
-                    delay: 3500,
+                    delay: 5000,
                     disableOnInteraction: false,
               }}
         >

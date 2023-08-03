@@ -1,6 +1,7 @@
 import React from 'react'
 import '@/assets/styles/card.scss';
 import ImageCustom from './ImageCustom';
+import ButtonCustom from './ButtonCustom';
 
 function Card() {
     
@@ -21,15 +22,29 @@ function Card() {
                     ></div>
                 </div>
                 <div className='wrapper-control'>
-                    <span className='movie-name text-black dark:text-primary-text'>
-                        THE ESCAPE ROOM 2 
-                        THE ESCAPE ROOM 2 
-                        THE ESCAPE ROOM 2 
-                        THE ESCAPE ROOM 2 
-                        THE ESCAPE ROOM 2 
-                        THE ESCAPE ROOM 2 
-                    </span>
-                    <span className='mt-2 time dark:text-primary-content'>Khởi chiếu ngày 20/11/1999</span>
+                    <div className='w-full h-full relative'>
+                        <div className='info'>
+                            <span className='movie-name text-orange-txt dark:text-primary-text'>
+                                THE ESCAPE ROOM 2 
+                                THE ESCAPE ROOM 2 
+                                THE ESCAPE ROOM 2 
+                                THE ESCAPE ROOM 2 
+                                THE ESCAPE ROOM 2 
+                                THE ESCAPE ROOM 2 
+                            </span>
+                            <span className='mt-2 time dark:text-primary-content'>Khởi chiếu ngày 20/11/1999</span>
+                        </div>
+                        <div className='relative control'>
+                            <ButtonCustom 
+                                className="w-full"
+                                buttonName="Đặt vé"
+                            />
+                            <ButtonCustom 
+                                className="w-full ml-1"
+                                buttonName="Xem trailler"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

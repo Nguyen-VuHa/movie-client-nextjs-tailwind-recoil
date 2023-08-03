@@ -16,7 +16,7 @@ function MovieCommingSoon() {
         <Swiper
             slidesPerView={1}
             spaceBetween={10}
-            modules={[Navigation]}
+            modules={[Navigation, Autoplay]}
             navigation={true}
             breakpoints={{
                 '@0.00': {
@@ -25,21 +25,21 @@ function MovieCommingSoon() {
                 },
                 '@0.75': {
                     slidesPerView: 2,
-                    spaceBetween: 20,
+                    spaceBetween: 10,
                 },
                 '@1.00': {
                     slidesPerView: 4,
-                    spaceBetween: 20,
+                    spaceBetween: 10,
                 },
                 '@1.50': {
                     slidesPerView: 5,
-                    spaceBetween: 30,
+                    spaceBetween: 10,
                 },
               }}
-            //   autoplay={{
-            //         delay: 3500,
-            //         disableOnInteraction: false,
-            //   }}
+              autoplay={{
+                    delay: 3500,
+                    disableOnInteraction: false,
+              }}
         >
             <SwiperSlide>
                 <Card />

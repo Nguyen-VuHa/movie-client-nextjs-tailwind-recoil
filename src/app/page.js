@@ -1,6 +1,7 @@
 import Hero from "@/components/HomePage/Hero"
 import MovieCommingSoon from "@/components/HomePage/MovieCommingSoon"
 import MovieCurrent from "@/components/HomePage/MovieCurrent"
+import PromotionAndEvent from "@/components/HomePage/PromotionAndEvent";
 
 // write description -> SEO page
 export const metadata = {
@@ -18,6 +19,7 @@ export default function HomePage() {
             <Hero />
             <MovieCurrent />
             <MovieCommingSoon />
+            <PromotionAndEvent />
         </div>
     )
 }
