@@ -1,5 +1,5 @@
-import CarouselCustom from "@/components/Common/Carousel/CarouselCustom"
 import Hero from "@/components/HomePage/Hero"
+import MovieCommingSoon from "@/components/HomePage/MovieCommingSoon"
 import MovieCurrent from "@/components/HomePage/MovieCurrent"
 
 // write description -> SEO page
@@ -16,8 +16,8 @@ export default function HomePage() {
     return (
         <div>
             <Hero />
-            {/* <MovieCurrent /> */}
-            <CarouselCustom />
+            <MovieCurrent />
+            <MovieCommingSoon />
         </div>
     )
 }

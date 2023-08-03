@@ -7,16 +7,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Card from '@/components/Common/Card';
 
-function MovieCurrent() {
+function MovieCommingSoon() {
     return (
        <div className='xl:px-[80px] md:px-[30px] px-[40px]'>
-        <h1 className='text-center pb-5 text-[45px] max-sm:text-[32px] font-bold text-primary-text'>
-            _Phim Đang Chiếu_
+        <h1 className='text-center py-5 text-[45px] max-sm:text-[32px] font-bold text-primary-text'>
+            _Phim Sắp Chiếu_
         </h1>
         <Swiper
             slidesPerView={1}
             spaceBetween={10}
-            modules={[Navigation, Autoplay]}
+            modules={[Navigation]}
             navigation={true}
             breakpoints={{
                 '@0.00': {
@@ -36,10 +36,10 @@ function MovieCurrent() {
                     spaceBetween: 30,
                 },
               }}
-              autoplay={{
-                    delay: 3500,
-                    disableOnInteraction: false,
-              }}
+            //   autoplay={{
+            //         delay: 3500,
+            //         disableOnInteraction: false,
+            //   }}
         >
             <SwiperSlide>
                 <Card />
@@ -63,4 +63,4 @@ function MovieCurrent() {
     )
 }
 
-export default MovieCurrent
+export default MovieCommingSoon
