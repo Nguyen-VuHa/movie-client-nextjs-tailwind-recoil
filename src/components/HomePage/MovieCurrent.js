@@ -6,8 +6,14 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Card from '@/components/Common/Card';
+import { dataMovie } from '@/atoms/dashboardState';
+import { useRecoilValue } from 'recoil';
+import dayjs from 'dayjs';
 
 function MovieCurrent() {
+    const movieData = useRecoilValue(dataMovie);
+    const { movieCurrent } = movieData
+
     return (
        <div className='xl:px-[80px] md:px-[30px] px-[40px]'>
         <h1 className='text-center pb-5 text-[45px] max-sm:text-[32px] font-bold text-primary-text'>
@@ -41,23 +47,17 @@ function MovieCurrent() {
                     disableOnInteraction: false,
               }}
         >
-            <SwiperSlide>
-                <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card />
-            </SwiperSlide>
-            <SwiperSlide><Card /></SwiperSlide>
-            <SwiperSlide><Card /></SwiperSlide>
-            <SwiperSlide><Card /></SwiperSlide>
-            <SwiperSlide><Card /></SwiperSlide>
-            <SwiperSlide><Card /></SwiperSlide>
-            <SwiperSlide><Card /></SwiperSlide>
-            <SwiperSlide><Card /></SwiperSlide>
-            <SwiperSlide><Card /></SwiperSlide>
+            {
+                movieCurrent && movieCurrent.length > 0 &&
+                movieCurrent.map(mvc => {
+                    return <SwiperSlide key={mvc.id}>
+                        <Card 
+                            data={mvc}
+                            stringTime={`Từ ${dayjs(mvc.start_date).format("DD/MM")} đến ${dayjs(mvc.end_date).format("DD/MM/YYYY")}`}
+                        />
+                    </SwiperSlide>
+                })
+            }
         </Swiper>
        </div>
     )

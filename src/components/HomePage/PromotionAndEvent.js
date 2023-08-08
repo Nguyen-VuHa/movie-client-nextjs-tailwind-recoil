@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -8,11 +8,20 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 import ImageCustom from '../Common/ImageCustom';
 
 
 function PromotionAndEvent() {
+
+    const [listBanner, setListBanner] = useState([
+        process.env.NEXT_PUBLIC_API_URL + 'public/banner-1.jpg',
+        process.env.NEXT_PUBLIC_API_URL + 'public/banner-2.jpg',
+        process.env.NEXT_PUBLIC_API_URL + 'public/banner-3.jpg',
+        process.env.NEXT_PUBLIC_API_URL + 'public/banner-4.jpg',
+        process.env.NEXT_PUBLIC_API_URL + 'public/banner-5.jpg',
+    ])
+    
     return (
         <div className='xl:mx-[80px] md:mx-[30px] mx-[40px] my-[50px] rounded overflow-hidden'>
             <h2 className='text-center pb-5 text-[45px] max-sm:text-[32px] font-bold text-primary-text'>
@@ -25,33 +34,22 @@ function PromotionAndEvent() {
                 pagination={{
                     clickable: true,
                 }}
-                modules={[EffectFade, Navigation, Pagination]}
-                className="mySwiper"
+                modules={[EffectFade, Navigation, Pagination, Autoplay]}
+                autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                }}
             >
-                <SwiperSlide>
-                    <ImageCustom 
-                        className="w-full h-[500px] max-sm:h-[250px]"
-                        src="https://swiperjs.com/demos/images/nature-1.jpg"
-                    />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <ImageCustom 
-                        className="w-full h-[500px] max-sm:h-[250px]"
-                        src="https://swiperjs.com/demos/images/nature-2.jpg" 
-                    />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <ImageCustom 
-                        className="w-full h-[500px] max-sm:h-[250px]"
-                        src="https://swiperjs.com/demos/images/nature-3.jpg" 
-                    />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <ImageCustom 
-                        className="w-full h-[500px] max-sm:h-[250px]"
-                        src="https://swiperjs.com/demos/images/nature-4.jpg"
-                    />
-                </SwiperSlide>
+                {
+                    listBanner.map((banner, index) => {
+                        return <SwiperSlide key={index}>
+                            <ImageCustom 
+                                className="w-full h-[500px] max-sm:h-[250px]"
+                                src={banner}
+                            />
+                        </SwiperSlide>
+                    })
+                }
             </Swiper>
         </div>
     )

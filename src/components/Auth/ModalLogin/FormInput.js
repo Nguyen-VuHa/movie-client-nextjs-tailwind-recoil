@@ -8,6 +8,7 @@ import { errorMessageLoginState, initialErrMessageLoginState, initialLoginState,
 import { handleValidateFormLogin } from '@/validators/login'
 import { toast } from 'react-toastify'
 import { handleLoginAccount } from '@/selectors/authSelector'
+import Cookies from 'js-cookie'
 
 function FormInput() {
     const [modal, setModal] = useRecoilState(modalState)
@@ -47,8 +48,6 @@ function FormInput() {
         {
             // handle register
             setIsLoading(true);
-
-            console.log(login)
             
            const result = await handleLoginAccount(login);
 
@@ -68,6 +67,11 @@ function FormInput() {
                     ...modal,
                     modalLogin: false,
                 })
+
+                const { accessToken, refreshToken, user } = result.data;
+                Cookies.set('token', accessToken, { expires: 365  })
+                Cookies.set('refreshToken', refreshToken, { expires: 365  })
+                Cookies.set('user', JSON.stringify(user), { expires: 365  })
             }
 
             setIsLoading(false);

@@ -1,9 +1,12 @@
+"use client"
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import ButtonCustom from '../Common/ButtonCustom'
 import { TiThMenu } from 'react-icons/ti'
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { globalState } from '@/atoms/globalState';
 import { modalState } from '@/atoms/modalState';
+import UserInfo from './UserInfo';
+import Cookies from 'js-cookie';
 
 function AuthControl() {
     const groupBoxRef = useRef(null)
@@ -11,6 +14,8 @@ function AuthControl() {
 
     const { darkMode } = useRecoilValue(globalState)
     const [global, setGlobal] = useRecoilState(globalState)
+    const [isLogin, setisLogin] = useState(0)
+    const [user, setUser] = useState(null)
     const [modal, setModal] = useRecoilState(modalState)
 
     const [toggleMenu, setToggleMenu] = useState(false)
@@ -20,7 +25,16 @@ function AuthControl() {
             ...global,
             darkMode: localStorage.getItem('theme') === 'dark' ? true : false
         })
-    }, [])
+
+        if (Cookies.get("token")) {
+            let userObj = Cookies.get("user")
+
+            setUser(JSON.parse(userObj))
+            setisLogin(1)
+        } else {
+            setisLogin(2)
+        }
+    }, [Cookies.get("token")])
     
     
     useEffect(() => {
@@ -44,7 +58,6 @@ function AuthControl() {
 
         return () => document.removeEventListener('click', () => {})
     }, [])
-    
     
 
     return (
@@ -76,53 +89,73 @@ function AuthControl() {
                     />
                 </button>
             </div>
-            <div 
-                className={`flex justify-center items-center lg:flex
-                ${toggleMenu ? 'max-md:absolute' : 'max-md:hidden'} max-md:top-[110%] max-md:right-0
-                max-md:border-[1px] max-md:p-3 max-md:rounded-[6px]
-                bg-white dark:bg-primary-bg max-md:shadow-xl
-                `}
-            >
-                <ButtonCustom 
-                    buttonName="Đăng nhập"
-                    onClick={() => setModal({
-                        ...modal,
-                        modalLogin: true,
-                    })}
-                />
-                <ButtonCustom 
-                    className='ml-1'
-                    buttonName="Đăng ký"
-                    onClick={() => setModal({
-                        ...modal,
-                        modalRegister: true,
-                    })}
-                />
-
-                <div className="h-[25px] w-[2px] mx-2 bg-primary-text border-0 dark:bg-gray-700" />
-
-                <div className='flex justify-center items-center'>
-                    <label className="relative inline-flex items-center cursor-pointer">
-                        <input 
-                            type="checkbox" 
-                            onChange={() => {
-                                setGlobal({
-                                    ...global,
-                                    darkMode: !darkMode
-                                })
-
-                                if(darkMode)
-                                    localStorage.setItem('theme', 'light')
-                                else
-                                    localStorage.setItem('theme', 'dark')
-                            }} 
-                            checked={darkMode} 
-                            value="" 
-                            className="sr-only peer" 
+            <div>
+                {
+                    isLogin === 1 &&
+                    <div 
+                        className={`
+                           flex justify-center items-center lg:flex
+                           ${toggleMenu ? 'max-md:absolute max-md:w-[300px]' : 'max-md:hidden'} max-md:top-[110%] max-md:right-0
+                           max-md:border-[1px] max-md:p-3 max-md:rounded-[6px]
+                           bg-white dark:bg-primary-bg max-md:shadow-xl
+                       `}
+                   >
+                       <UserInfo 
+                            user={user}
+                       />
+                   </div>
+                }
+                 {
+                    isLogin === 2 &&
+                    <div 
+                        className={`flex justify-center items-center lg:flex
+                        ${toggleMenu ? 'max-md:absolute' : 'max-md:hidden'} max-md:top-[110%] max-md:right-0
+                        max-md:border-[1px] max-md:p-3 max-md:rounded-[6px]
+                        bg-white dark:bg-primary-bg max-md:shadow-xl
+                        `}
+                    >
+                        <ButtonCustom 
+                            buttonName="Đăng nhập"
+                            onClick={() => setModal({
+                                ...modal,
+                                modalLogin: true,
+                            })}
                         />
-                        <div className="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-primary-text"></div>
-                    </label>
-                </div>
+                        <ButtonCustom 
+                            className='ml-1'
+                            buttonName="Đăng ký"
+                            onClick={() => setModal({
+                                ...modal,
+                                modalRegister: true,
+                            })}
+                        />
+
+                        <div className="h-[25px] w-[2px] mx-2 bg-primary-text border-0 dark:bg-gray-700" />
+
+                        <div className='flex justify-center items-center'>
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input 
+                                    type="checkbox" 
+                                    onChange={() => {
+                                        setGlobal({
+                                            ...global,
+                                            darkMode: !darkMode
+                                        })
+
+                                        if(darkMode)
+                                            localStorage.setItem('theme', 'light')
+                                        else
+                                            localStorage.setItem('theme', 'dark')
+                                    }} 
+                                    checked={darkMode} 
+                                    value="" 
+                                    className="sr-only peer" 
+                                />
+                                <div className="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-primary-text"></div>
+                            </label>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     )

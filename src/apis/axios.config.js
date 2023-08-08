@@ -1,5 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
+import Cookies from 'js-cookie'
 // Set up default config for http requests here
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs
 
@@ -12,7 +13,7 @@ const axiosClient = axios.create({
 });
 
 function getAccessToken(){
-    return localStorage.getItem('accessToken') || ''
+    return Cookies.get('token') || ''
 }
 
 axiosClient.interceptors.request.use(async (config) => {
@@ -37,7 +38,7 @@ axiosClient.interceptors.response.use(
             
             originalRequest._retry = true
             const refreshToken = { 
-                refreshToken: localStorage.getItem('refreshToken') 
+                refreshToken: Cookies.get('refreshToken')
             };
             const data = await axiosClient.post(
                 process.env.NEXT_PUBLIC_API_URL + '/api/auth/refresh-token',
@@ -45,11 +46,10 @@ axiosClient.interceptors.response.use(
             )
             delete axios.defaults.headers.common['Authorization']
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.accessToken
-            localStorage.setItem('accessToken', data.accessToken)
-            localStorage.setItem('refreshToken', data.refreshToken)
+            Cookies.set('token', data.accessToken)
+            Cookies.set('refreshToken', data.refreshToken)
             
             return axiosClient(originalRequest)
-
         }
         throw error;
     }
