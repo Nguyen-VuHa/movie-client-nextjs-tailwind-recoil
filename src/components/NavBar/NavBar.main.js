@@ -58,9 +58,9 @@ function NavBarMain() {
     return (
         <>
             {/* Modal login */}
-            { modalLogin && <ModalLoginMain /> }
+            <ModalLoginMain />
             {/* Modal Register */}
-            { modalRegister && <ModalRegisterMain /> }
+            <ModalRegisterMain />
 
             <header 
                 className={`

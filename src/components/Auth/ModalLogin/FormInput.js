@@ -38,7 +38,7 @@ function FormInput() {
             })
             .catch(error => console.log(error))
         }
-    })
+    }, [])
 
     // handle submit login
     const handleLogin = async () => {

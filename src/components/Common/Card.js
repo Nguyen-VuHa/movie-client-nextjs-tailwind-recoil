@@ -2,9 +2,12 @@ import React from 'react'
 import '@/assets/styles/card.scss';
 import ImageCustom from './ImageCustom';
 import ButtonCustom from './ButtonCustom';
+import { useRecoilState } from 'recoil';
+import { globalState } from '@/atoms/globalState';
 
 function Card({ data, stringTime }) {
-    
+    const [global, setGlobal] = useRecoilState(globalState)
+
     return (
         <div className='p-2'>
             <div className='layout-card w-full'>
@@ -37,6 +40,13 @@ function Card({ data, stringTime }) {
                             <ButtonCustom 
                                 className="w-full ml-1"
                                 buttonName="Xem trailler"
+                                onClick={() => {
+                                    setGlobal({
+                                        ...global,
+                                        isModalTrailer: true,
+                                        youtubeId: data?.id_trailer
+                                    })
+                                }}
                             />
                         </div>
                     </div>

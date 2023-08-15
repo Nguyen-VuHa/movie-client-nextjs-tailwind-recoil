@@ -4,12 +4,14 @@ import React, { useEffect, useRef } from 'react'
 import './homepage.scss'
 import ButtonCustom from '@/components/Common/ButtonCustom'
 import ImageCustom from '@/components/Common/ImageCustom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { topMovieOfWeek } from '@/atoms/dashboardState'
 import HeroLoading from './HeroLoading'
 import Title from './Title'
+import { globalState } from '@/atoms/globalState'
 
 function Hero() {
+    const [global, setGlobal] = useRecoilState(globalState)
     const dataTopMovie = useRecoilValue(topMovieOfWeek);
     const { movieTopOfWeek, loadingFetch } = dataTopMovie
 
@@ -113,6 +115,13 @@ function Hero() {
                                     <ButtonCustom 
                                         className="ml-2"
                                         buttonName="Xem Trailler"
+                                        onClick={() => {
+                                            setGlobal({
+                                                ...global,
+                                                isModalTrailer: true,
+                                                youtubeId: movieTopOfWeek?.id_trailer
+                                            })
+                                        }}
                                     />
                                 </div>
                             </div>

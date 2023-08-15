@@ -7,15 +7,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Card from '@/components/Common/Card';
 import { dataMovie } from '@/atoms/dashboardState';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 import Title from './Title';
 import { Triangle } from 'react-loader-spinner';
+import { globalState } from '@/atoms/globalState';
 
 function MovieCurrent() {
     const movieData = useRecoilValue(dataMovie);
     const { movieCurrent, loadingFetch } = movieData
-
+  
     return (
        <div className='xl:px-[80px] md:px-[30px] px-[40px]'>
         <Title 

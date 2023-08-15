@@ -35,16 +35,19 @@ function ImageCustom({
             }
             
             {/* The Image component from Next.js to render the actual image */}
-            <Image
-                loader={() => src} // Loader function that returns the image URL
-                src={src} // Image source URL
-                alt={alt} // Alternate text for the image
-                layout='fill' // Fill the container with the image
-                onLoadingComplete={handleImageLoaded} // Callback when the image finishes loading
-                style={isLoading ? { display: 'none' } : { display: 'block', backgroundSize: "cover" }} // Conditional style for the image visibility
-                unoptimized // Skip image optimization
-                priority // Mark the image as a priority for preloading
-            />
+            {
+                src && <Image
+                    loader={() => src} // Loader function that returns the image URL
+                    src={src} // Image source URL
+                    alt={alt} // Alternate text for the image
+                    layout='fill' // Fill the container with the image
+                    onLoadingComplete={handleImageLoaded} // Callback when the image finishes loading
+                    style={isLoading ? { display: 'none' } : { display: 'block', backgroundSize: "cover" }} // Conditional style for the image visibility
+                    unoptimized // Skip image optimization
+                    priority // Mark the image as a priority for preloading
+                />
+            }
+            
        </div>
     )
 }
