@@ -10,6 +10,7 @@ import 'swiper/css/effect-fade';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 import ImageCustom from '../Common/ImageCustom';
+import Title from './Title';
 
 
 function PromotionAndEvent() {
@@ -24,9 +25,10 @@ function PromotionAndEvent() {
     
     return (
         <div className='xl:mx-[80px] md:mx-[30px] mx-[40px] my-[50px] rounded overflow-hidden'>
-            <h2 className='text-center pb-5 text-[45px] max-sm:text-[32px] font-bold text-primary-text'>
-                _Ưu Đãi Khuyến Mãi_
-            </h2>
+            <Title 
+                className="text-center"
+                title="Ưu Đãi Khuyến Mãi"
+            />
             <Swiper
                 spaceBetween={30}
                 effect={'fade'}

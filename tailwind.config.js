@@ -26,6 +26,7 @@ module.exports = {
       },
       fontFamily: {
         'primary': `'Quicksand', sans-serif;`,
+        'title': `'Saira Stencil One', cursive;`,
       }
     },
   },
