@@ -9,8 +9,6 @@ import './navbar.scss'
 import AuthControl from './AuthControl'
 import ModalLoginMain from '../Auth/ModalLogin/ModalLogin.main'
 import ModalRegisterMain from '../Auth/ModalRegister/ModalRegister.main'
-import { useRecoilValue } from 'recoil'
-import { modalState } from '@/atoms/modalState'
 
 const ArrayMenu = [
     {
@@ -39,8 +37,6 @@ const ArrayMenu = [
 function NavBarMain() {
     const [menuActive, setMenuAcitve] = useState('')
 
-    const { modalLogin, modalRegister } = useRecoilValue(modalState)
-
     // render: check url window -> set menu active
     useEffect(() => {
         const windowPath = window.location.pathname;
@@ -66,13 +62,12 @@ function NavBarMain() {
                 className={`
                 flex justify-around 
                 max-md:justify-between 
-                items-center px-[15px] py-[10px] 
+                items-center  py-[10px] px-[20px]
                 shadow-lg dark:shadow-2xl w-full h-[80px] 
                 top-0 left-0 bg-white dark:bg-[#121825]
                 fixed z-[999]
             `}
             >
-                
                 {/* Logo */}
                 <a href="/" className='max-md:hidden'>
                     <ImageCustom 
