@@ -5,9 +5,8 @@ import ButtonCustom from '@/components/Common/ButtonCustom'
 import ImageCustom from '@/components/Common/ImageCustom'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { topMovieOfWeek } from '@/atoms/dashboardState'
-import HeroLoading from './HeroLoading'
-import Title from './Title'
 import { globalState } from '@/atoms/globalState'
+import Breadcrumb from './Breadcrumb'
 
 function Hero() {
     const [global, setGlobal] = useRecoilState(globalState)
@@ -46,10 +45,7 @@ function Hero() {
                 />
             </div>
             <div className='w-full p-[80px] max-sm:p-[40px]'>
-                <Title 
-                    className="font-primary"
-                    title="Top Phim Trong Tuần"
-                />
+                <Breadcrumb />
                 <div className="w-full mt-4">
                     {
                         loadingFetch && <HeroLoading />
@@ -115,11 +111,7 @@ function Hero() {
                                         className="ml-2"
                                         buttonName="Xem Trailler"
                                         onClick={() => {
-                                            setGlobal({
-                                                ...global,
-                                                isModalTrailer: true,
-                                                youtubeId: movieTopOfWeek?.id_trailer
-                                            })
+                                            
                                         }}
                                     />
                                 </div>

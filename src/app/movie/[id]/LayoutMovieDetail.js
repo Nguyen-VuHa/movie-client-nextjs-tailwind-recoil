@@ -1,11 +1,11 @@
-import Breadcrumb from '@/components/MovieDetail/Breadcrumb'
+import Hero from '@/components/MovieDetail/Hero'
 import React from 'react'
 
 
 function LayoutMovieDetail() {
     return (
         <div>
-            <Breadcrumb />
+            <Hero />
         </div>
     )
 }
