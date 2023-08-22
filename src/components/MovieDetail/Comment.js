@@ -1,8 +1,13 @@
 import React from 'react'
+import InputComment from '../Common/InputComment'
 
 function Comment() {
     return (
-        <div>Comment</div>
+        <div>
+            <InputComment 
+                placeholder="Enter comment"
+            />
+        </div>
     )
 }
 

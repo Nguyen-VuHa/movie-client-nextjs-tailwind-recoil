@@ -5,7 +5,7 @@ import ButtonCustom from './ButtonCustom';
 import { useRecoilState } from 'recoil';
 import { globalState } from '@/atoms/globalState';
 
-function Card({ data, stringTime }) {
+function Card({ data, stringTime, btnBooking }) {
     const [global, setGlobal] = useRecoilState(globalState)
 
     return (
@@ -33,10 +33,12 @@ function Card({ data, stringTime }) {
                             <span className='mt-2 time dark:text-primary-content'>{ stringTime }</span>
                         </div>
                         <div className='relative control'>
-                            <ButtonCustom 
-                                className="w-full"
-                                buttonName="Đặt vé"
-                            />
+                            {
+                                btnBooking && <ButtonCustom 
+                                    className="w-full"
+                                    buttonName="Đặt vé"
+                                />
+                            }
                             <ButtonCustom 
                                 className="w-full ml-1"
                                 buttonName="Xem trailler"

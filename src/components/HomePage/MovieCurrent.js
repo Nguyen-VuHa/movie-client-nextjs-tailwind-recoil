@@ -69,6 +69,7 @@ function MovieCurrent() {
                     movieCurrent.map(mvc => {
                         return <SwiperSlide key={mvc.id}>
                             <Card 
+                                btnBooking
                                 data={mvc}
                                 stringTime={`Từ ${dayjs(mvc.start_date).format("DD/MM")} đến ${dayjs(mvc.end_date).format("DD/MM/YYYY")}`}
                             />
