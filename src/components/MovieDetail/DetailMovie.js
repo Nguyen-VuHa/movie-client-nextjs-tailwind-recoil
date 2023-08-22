@@ -9,7 +9,7 @@ import { globalState } from '@/atoms/globalState'
 import Breadcrumb from './Breadcrumb'
 
 function Hero() {
-    const [global, setGlobal] = useRecoilState(globalState)
+    // const [global, setGlobal] = useRecoilState(globalState)
     const dataTopMovie = useRecoilValue(topMovieOfWeek);
     const { movieTopOfWeek, loadingFetch } = dataTopMovie
 
@@ -47,9 +47,9 @@ function Hero() {
             <div className='w-full p-[80px] max-sm:p-[40px]'>
                 <Breadcrumb />
                 <div className="w-full mt-4">
-                    {
+                    {/* {
                         loadingFetch && <HeroLoading />
-                    }
+                    } */}
                     {
                        !loadingFetch &&
                        <div className="w-full h-auto p-5 flex max-sm:flex-col max-sm:p-0">
