@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { AiFillBell } from "react-icons/ai";
+import ImageCustom from '../Common/ImageCustom';
 
 const imageDefault = "https://media.istockphoto.com/id/1311285048/vi/vec-to/avatar-m.jpg?s=170667a&w=0&k=20&c=8RuJ-HbNKnf4SK3Sf9leGyhxuzc73Ipa_vQMajFga3I="
 function UserInfo({ user }) {
@@ -35,7 +36,7 @@ function UserInfo({ user }) {
                         setToggleMenu(!toggleMenu)
                     }}
                 >
-                    <img 
+                    <ImageCustom
                         className="inline-block h-8 w-8 rounded-full ring-2 ring-white" 
                         src={user.avartar && user.avartar || imageDefault} alt=""
                     />
