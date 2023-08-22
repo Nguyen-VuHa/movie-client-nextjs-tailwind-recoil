@@ -5,7 +5,7 @@ function Comment() {
     return (
         <div>
             <InputComment 
-                placeholder="Enter comment"
+                placeholder="Hãy viết cảm nghỉ của bạn về bộ phim này"
             />
         </div>
     )
