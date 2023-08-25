@@ -49,7 +49,8 @@ function NavBarMain() {
 
         if(windowPath.includes('/showtimes'))
             setMenuAcitve('Lịch chiếu')
-    }, [])
+    }, [typeof window !== "undefined" && window.location.pathname])
+    
 
     return (
         <>

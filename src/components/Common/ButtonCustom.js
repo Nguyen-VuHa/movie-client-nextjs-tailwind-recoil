@@ -23,7 +23,7 @@ function ButtonCustom({
             className={`
                 transition-colors 
                 whitespace-nowrap
-                text-primary-bg font-primary font-semibold bg-primary-text hover:bg-primary-text/90 focus:outline-none rounded-md text-sm px-5 py-2.5 text-center inline-flex justify-center items-center ${className || ''}`
+                text-primary-bg font-primary font-semibold bg-primary-text hover:bg-primary-text/60 focus:outline-none rounded-md text-sm px-5 py-2.5 text-center inline-flex justify-center items-center ${className || ''}`
             } // CSS classes for the button, combining the provided className prop with the default classes
         >
             { loading ? // If the button is in loading state, render the loading spinner and loadingText (if available)

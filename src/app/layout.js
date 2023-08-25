@@ -10,7 +10,9 @@ import 'react-toastify/dist/ReactToastify.css'
 export default function RootLayout({ children }) {
   return (
     <html>
-        <head></head>
+        <head>
+          
+        </head>
         <body className='dark:bg-primary-bg'>
             <ToastContainer 
                 theme="colored"

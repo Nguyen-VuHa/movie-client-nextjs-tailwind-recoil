@@ -9,11 +9,11 @@ export const metadata = {
     },
 }
 
-function MovieDetail() {
+function MovieDetail({ params }) {
 
     return (
         <>
-            <LayoutMovieDetail />
+            <LayoutMovieDetail params={params}/>
         </>
     )
 }

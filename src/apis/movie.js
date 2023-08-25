@@ -12,6 +12,11 @@ const movieApi = {
 
         return axiosClient.get(url)
     },
+    getDetailMovie: (payload) => {
+        const url = `api/v1/movie/detail/${payload}`
+
+        return axiosClient.get(url)
+    },
 }
 
 export default movieApi;

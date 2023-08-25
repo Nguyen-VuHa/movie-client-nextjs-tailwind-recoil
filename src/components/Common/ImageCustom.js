@@ -18,7 +18,7 @@ function ImageCustom({
     
     return (
         <div 
-            className={`relative ${className} space-y-8 md:space-y-0 md:space-x-8 md:flex md:items-center`}
+            className={`relative ${className} space-y-8 md:space-y-0 md:space-x-8 md:flex md:items-center overflow-hidden`}
         >
             {isLoading && // Display a loading placeholder if the image is still loading
                 <div 

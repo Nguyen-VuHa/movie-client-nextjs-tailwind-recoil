@@ -1,12 +1,16 @@
 import React from 'react'
 import InputComment from '../Common/InputComment'
+import ViewComment from './ViewComment'
+import Rating from './Rating'
 
 function Comment() {
     return (
         <div>
+            <Rating />
             <InputComment 
-                placeholder="Hãy viết cảm nghỉ của bạn về bộ phim này"
+                placeholder="Viết bình luận của bạn"
             />
+            <ViewComment />
         </div>
     )
 }
