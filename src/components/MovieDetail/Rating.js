@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Rating = ({setRatngStar, ratingStar}) => {
-
+const Rating = () => {
+    const [ratingStar, setRatngStar] = useState(0)
     useEffect(() => {
         if(ratingStar === 0){
             let elmRadio = document.getElementsByName('star');
@@ -16,7 +16,7 @@ const Rating = ({setRatngStar, ratingStar}) => {
             <div className="star-rating items-center">
                 <div className="title-rating">Đánh Giá</div>
                 <div className="stars">
-                    <form action>
+                    <form action="true">
                         <input className="star star-5" id="star-5" type="radio" name="star" />
                         <label className="star star-5" htmlFor="star-5" onClick={() => setRatngStar(5)}/>
                         <input className="star star-4" id="star-4" type="radio" name="star" />

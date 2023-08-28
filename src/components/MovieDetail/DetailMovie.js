@@ -3,13 +3,16 @@
 import React, { useEffect, useRef } from 'react'
 import ButtonCustom from '@/components/Common/ButtonCustom'
 import ImageCustom from '@/components/Common/ImageCustom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import Breadcrumb from './Breadcrumb'
 import { movieState } from '@/atoms/movieState'
 import DetailLoading from './DetailLoading'
+import { globalState } from '@/atoms/globalState'
 
 function Hero() {
     const dataMovie = useRecoilValue(movieState);
+    const [global, setGlobal] = useRecoilState(globalState)
+    
     const { detailMovie, loadingDetail } = dataMovie
 
     const backgroudRef = useRef(null)
@@ -108,9 +111,13 @@ function Hero() {
                                     />
                                     <ButtonCustom 
                                         className="ml-2"
-                                        buttonName="Xem Trailler"
+                                        buttonName="Trailer"
                                         onClick={() => {
-                                            
+                                            setGlobal({
+                                                ...global,
+                                                isModalTrailer: true,
+                                                youtubeId: detailMovie?.id_trailer
+                                            })
                                         }}
                                     />
                                 </div>
