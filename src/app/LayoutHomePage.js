@@ -10,6 +10,7 @@ import { topMovieOfWeek, dataMovie } from "@/atoms/dashboardState";
 import { STR_STATUS_SUCCESS } from "@/constants/constants";
 import ModalViewTrailer from "@/components/Common/ModalViewTrailer";
 import { globalState } from "@/atoms/globalState";
+import Chatwoot from "@/components/Common/Chatwoot";
 
 export default function LayoutHomePage() {
     const [movieTopOfWeek, setMovieTopOfWeek] = useRecoilState(topMovieOfWeek)
@@ -63,6 +64,8 @@ export default function LayoutHomePage() {
 
     return (
         <div>
+            <Chatwoot />
+            
             <ModalViewTrailer 
                 status={isModalTrailer}
                 youtubeId={youtubeId}
