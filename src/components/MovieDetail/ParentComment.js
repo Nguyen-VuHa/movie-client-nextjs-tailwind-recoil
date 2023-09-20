@@ -11,7 +11,6 @@ import {  AVARTAR_EMPTY, STR_STATUS_SUCCESS } from '@/constants/constants'
 dayjs.locale('vi')
 dayjs.extend(relativeTime)
 
-
 function ParentComment({ data }) {
     const [statusComment, setStatusComment] = useState(false)
 
@@ -49,8 +48,9 @@ function ParentComment({ data }) {
             {
                 data && data?.images.length > 0 && <div className='mt-1 p-2 flex flex-wrap ml-[-0.5rem] mt-[-0.5rem]'>
                     {
-                        data.images.map(img => {
+                        data.images.map((idx, img) => {
                             return <ImageCustom 
+                                key={idx}
                                 className='text-center shrink-0 w-[70px] h-[100px] ml-2 mt-2' 
                                 alt="Not Avartar"
                                 src={img}
