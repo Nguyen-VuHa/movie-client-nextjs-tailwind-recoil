@@ -1,18 +1,19 @@
 "use client"
 import { globalState } from '@/atoms/globalState'
-import { movieState } from '@/atoms/movieState'
+import { commentMovieState, movieState } from '@/atoms/movieState'
 import ModalViewTrailer from '@/components/Common/ModalViewTrailer'
 import Comment from '@/components/MovieDetail/Comment'
 import DetailMovie from '@/components/MovieDetail/DetailMovie'
 import ShowTime from '@/components/MovieDetail/ShowTime'
 import { STR_STATUS_SUCCESS } from '@/constants/constants'
-import { fetchMovieDetailById } from '@/selectors/movieSelector'
+import { fetchCommentMovieById, fetchMovieDetailById } from '@/selectors/movieSelector'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 function LayoutMovieDetail({ params }) {
     const [movie, setMovie] = useRecoilState(movieState)
+    const [comment, setComment] = useRecoilState(commentMovieState)
     const { isModalTrailer, youtubeId } = useRecoilValue(globalState)
     const [global, setGlobal] = useRecoilState(globalState)
     
@@ -47,6 +48,37 @@ function LayoutMovieDetail({ params }) {
             }
     
             fetchMovieOfWeek()
+        }
+    }, [params])
+
+    useEffect(() => {
+        if(params && params.id) {
+          
+            const fetchCommentMovie = async () => {
+                if(!comment.fetchComment) {
+                    setComment({
+                        ...comment,
+                        fetchComment: true,
+                    })
+        
+                    const res = await fetchCommentMovieById(params.id)
+        
+                    if(res && res.status === STR_STATUS_SUCCESS) {
+                        setComment({
+                            fetchComment: false,
+                            comments: res.data,
+                        })
+                    } else {
+                        setComment({
+                            fetchComment: false,
+                            comments: [],
+                            
+                        })
+                    }
+                }
+            }
+    
+            fetchCommentMovie()
         }
     }, [params])
     

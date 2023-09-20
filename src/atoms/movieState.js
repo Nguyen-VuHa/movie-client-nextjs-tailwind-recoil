@@ -7,3 +7,12 @@ export const movieState = atom({
         loadingDetail: false,
     }
 })
+
+
+export const commentMovieState = atom({
+    key: 'commentMovieState',
+    default: {
+        fetchComment: false,
+        comments: [],
+    }
+})

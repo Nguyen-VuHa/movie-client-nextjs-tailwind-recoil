@@ -7,6 +7,7 @@ import { globalState } from '@/atoms/globalState';
 import { modalState } from '@/atoms/modalState';
 import UserInfo from './UserInfo';
 import Cookies from 'js-cookie';
+import { deleteAllCookies } from '@/utils/clearCookies';
 
 function AuthControl() {
     const groupBoxRef = useRef(null)
@@ -29,8 +30,13 @@ function AuthControl() {
         if (Cookies.get("token")) {
             let userObj = Cookies.get("user")
 
-            setUser(JSON.parse(userObj))
-            setisLogin(1)
+            if (userObj) {
+                setUser(JSON.parse(userObj))
+                setisLogin(1)
+            } else {
+                setisLogin(2)
+                deleteAllCookies()
+            }
         } else {
             setisLogin(2)
         }
