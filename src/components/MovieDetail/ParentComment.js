@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import commentApi from '@/apis/comment'
 import {  AVARTAR_EMPTY, STR_STATUS_SUCCESS } from '@/constants/constants'
+require('dayjs/locale/vi')
 dayjs.locale('vi')
 dayjs.extend(relativeTime)
 
@@ -34,11 +35,14 @@ function ParentComment({ data }) {
                     alt="Not Avartar"
                     src={data?.userImage || AVARTAR_EMPTY}
                 />
-                <div>
-                    <span className='ml-2 font-bold text-primary-text'>{ data?.userComment || 'anonymous' }</span>
-                    <span className='ml-2 text-[12px] font-bold text-primary-content'> - </span>
-                    <span className='ml-2 text-[12px] font-bold text-primary-content'>{ dayjs(data?.time).fromNow() }</span>
-                    <span className='ml-2 text-[12px] font-bold text-primary-content'> - </span>
+                <div className='w-full flex justify-between'>
+                    <div className='flex items-center max-sm:flex-col max-sm:items-start'>
+                        <span className='ml-2 font-bold text-primary-text'>{ data?.userComment || 'anonymous' }</span>
+                        <div className='flex text-[12px] font-bold text-primary-content'>
+                            <span className='ml-2'> - </span>
+                            <span className='ml-2'>{ dayjs(data?.time).fromNow() }</span>
+                        </div>
+                    </div>
                     <span className='ml-2 font-bold text-primary-text'>đánh giá { data?.rating } sao</span>
                 </div>
             </div>

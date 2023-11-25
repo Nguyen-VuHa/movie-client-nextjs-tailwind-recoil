@@ -24,9 +24,9 @@ function PromotionAndEvent() {
     ])
     
     return (
-        <div className='xl:mx-[80px] md:mx-[30px] mx-[40px] my-[50px] rounded overflow-hidden'>
+        <div className='xl:mx-[80px] md:mx-[30px] my-[30px] rounded overflow-hidden'>
             <Title 
-                className="text-center"
+                className="text-center mb-3"
                 title="Ưu Đãi Khuyến Mãi"
             />
             <Swiper

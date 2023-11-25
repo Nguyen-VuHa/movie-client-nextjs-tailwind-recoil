@@ -1,6 +1,5 @@
+"use client"
 import { modalState } from '@/atoms/modalState'
-import ButtonCustom from '@/components/Common/ButtonCustom'
-import InputCustom from '@/components/Common/InputCustom'
 import ModalCustom from '@/components/Common/ModalCustom'
 import React from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'

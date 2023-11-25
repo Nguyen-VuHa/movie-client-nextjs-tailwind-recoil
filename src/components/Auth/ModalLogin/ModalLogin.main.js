@@ -1,3 +1,4 @@
+"use client"
 import { modalState } from '@/atoms/modalState'
 import React from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'

@@ -5,6 +5,7 @@ import ButtonCustom from './ButtonCustom';
 import ImageCustom from './ImageCustom';
 import { AiFillCloseCircle } from "react-icons/ai";
 import { toast } from 'react-toastify';
+import { AVARTAR_EMPTY } from '@/constants/constants';
 
 const InputComment = ({ placeholder, onSubmit, clearText }) => {
     const textCommentRef = useRef();
@@ -59,7 +60,7 @@ const InputComment = ({ placeholder, onSubmit, clearText }) => {
             <ImageCustom  
                 className='rounded-[50%] w-[35px] h-[35px] text-center shrink-0' 
                 alt="Not Avartar"
-                src="https://res.cloudinary.com/cgv-vi-t-nam/image/upload/v1675921656/image_system/v0uc2orsvr1sslulldjd.jpg"
+                src={AVARTAR_EMPTY}
             />
             <div className='w-full'>
                 <div 

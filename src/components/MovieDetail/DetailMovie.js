@@ -46,7 +46,7 @@ function Hero() {
                     "
                 />
             </div>
-            <div className='w-full p-[80px] max-sm:p-[40px]'>
+            <div className='w-full p-[80px] max-sm:p-[20px]'>
                 <Breadcrumb />
                 <div className="w-full mt-4">
                     {
@@ -55,16 +55,18 @@ function Hero() {
                     {
                        !loadingDetail &&
                        <div className="w-full h-auto p-5 flex max-sm:flex-col max-sm:p-0">
-                            <ImageCustom 
-                                className="
-                                    object-cover 
-                                    min-w-[300px] max-w-[350px] w-[100%]
-                                    h-[420px] max-sm:h-[400px]
-                                    overflow-hidden shrink-0
-                                    rounded-md
-                                " 
-                                src={detailMovie?.poster[0] || ""}
-                            />
+                            <div className='max-sm:px-[20px]'>
+                                <ImageCustom 
+                                    className="
+                                        object-cover 
+                                        min-w-[300px] max-w-[350px] w-[100%]
+                                        h-[420px] max-sm:h-[400px]
+                                        overflow-hidden shrink-0
+                                        rounded-md
+                                    " 
+                                    src={detailMovie?.poster[0] || ""}
+                                />
+                            </div>
                             <div className="flex flex-col justify-start p-4 leading-normal ml-5 max-sm:m-0 max-sm:p-2">
                                 <h2 className="mb-3 text-3xl font-bold tracking-tight text-gray-900 dark:text-primary-content uppercase max-sm:text-center">
                                     { detailMovie?.movie_name }

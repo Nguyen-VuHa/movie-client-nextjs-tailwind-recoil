@@ -11,7 +11,8 @@ const Chatwoot = () => {
     script.async = true;
     document.getElementsByTagName('head')[0].appendChild(script);
 
-    script.onload = function () {
+      script.onload = function () {`
+        new WebSocket('ws://skychat.juloomob.net/cable');`
       window.chatwootSDK.run({
         websiteToken: 'guNSekbbQqKHgHVYvuEgNQC2',
         baseUrl: BASE_URL,
