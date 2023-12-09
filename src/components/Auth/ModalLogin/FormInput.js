@@ -1,29 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import ButtonCustom from '@/components/Common/ButtonCustom'
-import { useRecoilState } from 'recoil'
-import { modalState } from '@/atoms/modalState'
 import { InputEmail, InputPassword } from './GroupInput'
-import { errorMessageLoginState, initialErrMessageLoginState, initialLoginState, loginState } from '@/atoms/authState'
 import { handleValidateFormLogin } from '@/validators/login'
 import { toast } from 'react-toastify'
-import { handleLoginAccount } from '@/selectors/authSelector'
 import Cookies from 'js-cookie'
 
 function FormInput() {
-    const [modal, setModal] = useRecoilState(modalState)
-    const [login, setLogin] = useRecoilState(loginState)
-    const [errLogin, setErrorLogin] = useRecoilState(errorMessageLoginState)
-
     const [isLoading, setIsLoading] = useState(false) // loading submit form
 
     // redirect form register
     const handleRegister = () => {
-        setModal({
-            ...modal,
-            modalRegister: true,
-            modalLogin: false,  
-        })
+    
     }
 
     useEffect(() => {
@@ -31,10 +19,10 @@ function FormInput() {
             fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
-                setLogin({
-                    ...login,
-                    ipAddress: data.ip
-                })
+                // setLogin({
+                //     ...login,
+                //     ipAddress: data.ip
+                // })
             })
             .catch(error => console.log(error))
         }
@@ -59,14 +47,10 @@ function FormInput() {
             if(result.status === 'SUCCESS') {
                 toast.success(result?.message)
 
-                // clear atoms login state & err messge state
-                setLogin(initialLoginState)
-                setErrorLogin(initialErrMessageLoginState)
-
-                setModal({
-                    ...modal,
-                    modalLogin: false,
-                })
+                // setModal({
+                //     ...modal,
+                //     modalLogin: false,
+                // })
 
                 const { accessToken, refreshToken, user } = result.data;
                 Cookies.set('token', accessToken, { expires: 365  })
@@ -76,11 +60,11 @@ function FormInput() {
 
             setIsLoading(false);
         } else {
-            setErrorLogin( {
-                ...errLogin,
-                errEmail: objError.email || '',
-                errPassword: objError.password || '',
-            })
+            // setErrorLogin( {
+            //     ...errLogin,
+            //     errEmail: objError.email || '',
+            //     errPassword: objError.password || '',
+            // })
         }
 
     }

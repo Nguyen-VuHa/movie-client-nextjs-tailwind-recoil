@@ -1,29 +1,15 @@
-import { modalState } from '@/atoms/modalState'
 import ButtonCustom from '@/components/Common/ButtonCustom'
 import React, { useState } from 'react'
-import { useRecoilState } from 'recoil'
 import { InputAddress, InputBirthDay, InputConfirmPassword, InputEmail, InputFullName, InputNumberPhone, InputPassword } from './GroupInput'
 import { handleValidateFormRegister } from '@/validators/register'
-import { errorMessageRegisterState, initalErrMessageRegisterState, initalRegisterState, registerState } from '@/atoms/authState'
-import { handleCreateAccount } from '@/selectors/authSelector'
 import { toast } from 'react-toastify'
 
 function FormInput() {
-    const [modal, setModal] = useRecoilState(modalState)
-
-    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
-    const [register, setRegister] = useRecoilState(registerState)
-    
-
     const [isLoading, setIsLoading] = useState(false) // loading submit form
 
     // redirect form login
     const handleRedirectLogin = () => {
-        setModal({
-            ...modal,
-            modalLogin: true,
-            modalRegister: false,
-        })
+        
     }
 
     const handleSubmitForm = async () => {
@@ -43,27 +29,11 @@ function FormInput() {
             
             if(result?.status === 'SUCCESS') {
                 toast.success(result?.message)
-                setRegister(initalRegisterState)
-                setErrRegister(initalErrMessageRegisterState)
-                setModal({
-                    ...modal,
-                    modalRegister: false,
-                })
             }
 
             setIsLoading(false);
         } else {
             const { objError } = result
-            setErrRegister( {
-                ...errRegister,
-                errEmail: objError.email || '',
-                errPassword: objError.password || '',
-                errConfirmPassword: objError.confirmPassword || '',
-                errFullName: objError.fullName || '',
-                errNumberPhone: objError.numberPhone || '', 
-                errBirthDay: objError.birthDay || '',
-                errAddress: objError.address || '',
-            })
         }
     }
 

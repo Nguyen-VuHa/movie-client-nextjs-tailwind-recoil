@@ -5,10 +5,9 @@ import ButtonNav from './ButtonNav'
 import { SiHomebridge } from 'react-icons/si'
 import { FaPallet } from 'react-icons/fa'
 import { AiOutlineFieldTime } from 'react-icons/ai'
-import './navbar.scss'
-import AuthControl from './AuthControl'
-import ModalLoginMain from '../Auth/ModalLogin/ModalLogin.main'
-import ModalRegisterMain from '../Auth/ModalRegister/ModalRegister.main'
+// import AuthControl from './AuthControl'
+// import ModalLoginMain from '../Auth/ModalLogin/ModalLogin.main'
+// import ModalRegisterMain from '../Auth/ModalRegister/ModalRegister.main'
 
 const ArrayMenu = [
     {
@@ -55,49 +54,36 @@ function NavBarMain() {
     return (
         <>
             {/* Modal login */}
-            <ModalLoginMain />
+            {/* <ModalLoginMain /> */}
             {/* Modal Register */}
-            <ModalRegisterMain />
+            {/* <ModalRegisterMain /> */}
+            {/* Logo */}
+            <a href="/" className='max-md:hidden'>
+                <ImageCustom 
+                    src="https://www.tiendauroi.com/wp-content/uploads/2020/02/bhd-star-cinema.png"
+                    className='mobile:hidden max-md:w-[200px] lg:w-[220px] h-[55px]'
+                />
+            </a>
+            
+            <nav className='flex justify-center items-center flex-shrink-0 h-[100%] w-[auto]'>
+                {
+                    ArrayMenu.map(arrM => {
+                        return <ButtonNav 
+                            key={arrM.id}
+                            menuName={arrM.menuName}
+                            icon={menuActive === arrM.menuName ? arrM.iconActive : arrM.icon}
+                            link={arrM.link}
+                            active={menuActive === arrM.menuName}
+                            onClick={() => {
+                                setMenuAcitve(arrM.menuName)
+                            }}
+                        />
+                    })
+                }
+            </nav>
 
-            <header 
-                className={`
-                flex justify-around 
-                max-md:justify-between 
-                items-center  py-[10px] px-[20px]
-                shadow-lg dark:shadow-2xl w-full h-[80px] 
-                top-0 left-0 bg-white dark:bg-[#121825]
-                fixed z-[999]
-            `}
-            >
-                {/* Logo */}
-                <a href="/" className='max-md:hidden'>
-                    <ImageCustom 
-                        src="https://www.tiendauroi.com/wp-content/uploads/2020/02/bhd-star-cinema.png"
-                        className='mobile:hidden max-md:w-[200px] lg:w-[220px] h-[55px]'
-                        
-                    />
-                </a>
-                
-                <nav className='flex justify-center items-center flex-shrink-0 h-[100%] w-[auto]'>
-                    {
-                        ArrayMenu.map(arrM => {
-                            return <ButtonNav 
-                                key={arrM.id}
-                                menuName={arrM.menuName}
-                                icon={menuActive === arrM.menuName ? arrM.iconActive : arrM.icon}
-                                link={arrM.link}
-                                active={menuActive === arrM.menuName}
-                                onClick={() => {
-                                    setMenuAcitve(arrM.menuName)
-                                }}
-                            />
-                        })
-                    }
-                </nav>
-
-                {/* Control User */}
-                <AuthControl />
-            </header>
+            {/* Control User */}
+            {/* <AuthControl /> */}
         </>
         
     )

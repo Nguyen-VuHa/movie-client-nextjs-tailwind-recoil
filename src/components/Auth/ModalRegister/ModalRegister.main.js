@@ -1,8 +1,6 @@
 "use client"
-import { modalState } from '@/atoms/modalState'
 import ModalCustom from '@/components/Common/ModalCustom'
 import React from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import FormInput from './FormInput'
 
 function ModalRegisterMain() {

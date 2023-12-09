@@ -1,11 +1,9 @@
 "use client"
-import FooterMain from '@/components/Footer/Footer.main'
-import NavBarMain from '@/components/NavBar/NavBar.main'
-import RecoilProvider from '@/components/RecoilProvider/RecoilProvider'
 import './globals.scss'
-import 'dayjs/locale/vi'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { ConfigProvider } from 'antd'
+import ReduxProvider from '@/redux/provider'
 
 export default function RootLayout({ children }) {
   return (
@@ -15,13 +13,13 @@ export default function RootLayout({ children }) {
         </head>
         <body className='dark:bg-primary-bg'>
             <ToastContainer 
-                theme="colored"
+              theme="colored"
             />
-            <RecoilProvider>
-                <NavBarMain />
-                <main className='mt-[80px]'>{children}</main>
-                <FooterMain />
-            </RecoilProvider>
+            <ReduxProvider>
+              <ConfigProvider>
+                {children}
+              </ConfigProvider>
+            </ReduxProvider>
         </body>
     </html>
   )

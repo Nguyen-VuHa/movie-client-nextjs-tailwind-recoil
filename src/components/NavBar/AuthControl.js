@@ -2,9 +2,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import ButtonCustom from '../Common/ButtonCustom'
 import { TiThMenu } from 'react-icons/ti'
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { globalState } from '@/atoms/globalState';
-import { modalState } from '@/atoms/modalState';
 import UserInfo from './UserInfo';
 import Cookies from 'js-cookie';
 import { deleteAllCookies } from '@/utils/clearCookies';
@@ -13,11 +10,8 @@ function AuthControl() {
     const groupBoxRef = useRef(null)
     const buttonMenuRef = useRef(null)
 
-    const { darkMode } = useRecoilValue(globalState)
-    const [global, setGlobal] = useRecoilState(globalState)
     const [isLogin, setisLogin] = useState(0)
     const [user, setUser] = useState(null)
-    const [modal, setModal] = useRecoilState(modalState)
 
     const [toggleMenu, setToggleMenu] = useState(false)
 

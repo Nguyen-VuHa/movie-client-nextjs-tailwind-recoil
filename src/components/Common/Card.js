@@ -2,11 +2,8 @@ import React from 'react'
 import '@/assets/styles/card.scss';
 import ImageCustom from './ImageCustom';
 import ButtonCustom from './ButtonCustom';
-import { useRecoilState } from 'recoil';
-import { globalState } from '@/atoms/globalState';
 
 function Card({ data, stringTime, btnBooking }) {
-    const [global, setGlobal] = useRecoilState(globalState)
 
     return (
         <div className='p-2'>

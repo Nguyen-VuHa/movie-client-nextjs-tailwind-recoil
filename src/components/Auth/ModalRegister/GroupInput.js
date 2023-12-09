@@ -1,18 +1,11 @@
-import { errorMessageRegisterState, registerState } from '@/atoms/authState'
+
 import InputAreaCustom from '@/components/Common/InputAreaCustom'
 import InputCustom from '@/components/Common/InputCustom'
 import { handleRegexIsNumber } from '@/utils/regexIsNumber'
 import React from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import dayjs from 'dayjs'
 
 export const InputFullName = () => {
-    const { fullName } = useRecoilValue(registerState)
-    const { errFullName } = useRecoilValue(errorMessageRegisterState)
-
-    const [register, setRegister] = useRecoilState(registerState)
-    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
-
     return (
         <div className='mb-2'>
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -22,17 +15,7 @@ export const InputFullName = () => {
                 placeholder="Nguyễn Văn A..."
                 value={fullName}
                 onChange={(text) => {
-                    setRegister({
-                        ...register,
-                        fullName: text,
-                    })
-
-                    if(errFullName) {
-                        setErrRegister({
-                            ...errRegister,
-                            errFullName: '',
-                        })
-                    }
+                   
                 }}
                 errorMessage={errFullName}
             />
@@ -58,22 +41,13 @@ export const InputNumberPhone = () => {
                 value={numberPhone}
                 onChange={(text) => {
                     if(text && handleRegexIsNumber(text))
-                        setRegister({
-                            ...register,
-                            numberPhone: text,
-                        })
+                       
                     
                     if(text === '')
-                        setRegister({
-                            ...register,
-                            numberPhone: '',
-                        })
+                      
 
                     if(errNumberPhone) {
-                        setErrRegister({
-                            ...errRegister,
-                            errNumberPhone: '',
-                        })
+                       
                     }
                 }}
                 errorMessage={errNumberPhone}
@@ -84,12 +58,6 @@ export const InputNumberPhone = () => {
 
 
 export const InputBirthDay = () => {
-    const { birthDay } = useRecoilValue(registerState)
-    const { errBirthDay } = useRecoilValue(errorMessageRegisterState)
-
-    const [register, setRegister] = useRecoilState(registerState)
-    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
-
     return (
         <div className='mb-2'>
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -99,16 +67,9 @@ export const InputBirthDay = () => {
                 type={"date"}
                 value={birthDay}
                 onChange={(text) => {
-                    setRegister({
-                        ...register,
-                        birthDay: dayjs(new Date(text)).format('YYYY-MM-DD'),
-                    })
-
+                   
                     if(errBirthDay) {
-                        setErrRegister({
-                            ...errRegister,
-                            errBirthDay: '',
-                        })
+                       
                     }
                 }}
                 errorMessage={errBirthDay}
@@ -118,11 +79,6 @@ export const InputBirthDay = () => {
 }
 
 export const InputAddress = () => {
-    const { address } = useRecoilValue(registerState)
-    const { errAddress } = useRecoilValue(errorMessageRegisterState)
-
-    const [register, setRegister] = useRecoilState(registerState)
-    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
 
 
     return (
@@ -134,16 +90,9 @@ export const InputAddress = () => {
                 placeholder="số 24, Phường A,..."
                 value={address}
                 onChange={(text) => {
-                    setRegister({
-                        ...register,
-                        address: text,
-                    })
-
+                   
                     if(errAddress) {
-                        setErrRegister({
-                            ...errRegister,
-                            errAddress: '',
-                        })
+                     
                     }
                 }}
                 errorMessage={errAddress}
@@ -153,13 +102,6 @@ export const InputAddress = () => {
 }
 
 export const InputEmail = () => {
-    const { email } = useRecoilValue(registerState)
-    const { errEmail } = useRecoilValue(errorMessageRegisterState)
-
-    const [register, setRegister] = useRecoilState(registerState)
-    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
-
-
     return (
         <div className='mb-2'>
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -169,16 +111,9 @@ export const InputEmail = () => {
                 placeholder="xxx@gmail.com..."
                 value={email}
                 onChange={(text) => {
-                    setRegister( {
-                        ...register,
-                        email: text,
-                    })
 
                     if(errEmail) {
-                        setErrRegister({
-                            ...errRegister,
-                            errEmail: '',
-                        })
+                    
                     }
                 }}
                 errorMessage={errEmail}
@@ -190,12 +125,6 @@ export const InputEmail = () => {
 
 
 export const InputPassword = () => {
-    const { password } = useRecoilValue(registerState)
-    const { errPassword } = useRecoilValue(errorMessageRegisterState)
-
-    const [register, setRegister] = useRecoilState(registerState)
-    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
-
 
     return (
         <div className='mb-2'>
@@ -207,16 +136,10 @@ export const InputPassword = () => {
                 type="password"
                 value={password}
                 onChange={(text) => {
-                    setRegister({
-                        ...register,
-                        password: text,
-                    })
+                  
 
                     if(errPassword) {
-                        setErrRegister({
-                            ...errRegister,
-                            errPassword: '',
-                        })
+                      
                     }
                 }}
                 errorMessage={errPassword}
@@ -226,11 +149,6 @@ export const InputPassword = () => {
 }
 
 export const InputConfirmPassword = () => {
-    const { confirmPassword } = useRecoilValue(registerState)
-    const { errConfirmPassword } = useRecoilValue(errorMessageRegisterState)
-
-    const [register, setRegister] = useRecoilState(registerState)
-    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
 
     return (
         <div className='mb-2'>
@@ -242,16 +160,8 @@ export const InputConfirmPassword = () => {
                 type="password"
                 value={confirmPassword}
                 onChange={(text) => {
-                    setRegister({
-                        ...register,
-                        confirmPassword: text,
-                    })
 
                     if(errConfirmPassword) {
-                        setErrRegister({
-                            ...errRegister,
-                            errConfirmPassword: '',
-                        })
                     }
                 }}
                 errorMessage={errConfirmPassword}

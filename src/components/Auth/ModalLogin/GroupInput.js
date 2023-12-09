@@ -1,15 +1,9 @@
-import { errorMessageLoginState, loginState } from '@/atoms/authState'
+
 import InputCustom from '@/components/Common/InputCustom'
 import React from 'react'
-import { useRecoilState } from 'recoil'
 
 
 export const InputEmail = () => {
-    const [login, setLogin] = useRecoilState(loginState)
-    const { email } = login
-
-    const [errLogin, setErrLogin] = useRecoilState(errorMessageLoginState)
-    const { errEmail } = errLogin
 
     return (
         <div className='mb-2'>
@@ -39,10 +33,8 @@ export const InputEmail = () => {
 
 
 export const InputPassword = () => {
-    const [login, setLogin] = useRecoilState(loginState);
     const { password } = login;
 
-    const [errLogin, setErrLogin] = useRecoilState(errorMessageLoginState)
     const { errPassword } = errLogin
 
     return (

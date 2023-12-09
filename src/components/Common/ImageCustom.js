@@ -1,6 +1,8 @@
 // Importing necessary modules and components
+import { pushImageApp } from "@/redux/reducers/config.reducer";
 import Image from "next/legacy/image";
 import React, { useCallback, useState } from 'react'
+import { useDispatch, useSelector } from "react-redux";
 
 // Defining a functional component called ImageCustom
 function ImageCustom({ 
@@ -9,18 +11,27 @@ function ImageCustom({
     className,     // Additional CSS classes for the container element
     style         // Additional inline styles for the container element
 }) {
-    const [isLoading, setIsLoading] = useState(true); // State to track the image loading status
+    const dispatch = useDispatch()
+
+    const configState = useSelector(state => state.configState)
+    const { imagesApp } = configState;
+
+    const isImageExists = imagesApp.filter(img => img === src).length > 0
+    const [isLoading, setIsLoading] = useState(!isImageExists); // State to track the image loading status
 
     // Callback function to set isLoading to false when the image is loaded
     const handleImageLoaded = useCallback(() => {
         setIsLoading(false);
+        if (!isImageExists) {
+            dispatch(pushImageApp(src))
+        }
     });
     
     return (
         <div 
             className={`relative ${className} space-y-8 md:space-y-0 md:space-x-8 md:flex md:items-center overflow-hidden`}
         >
-            {isLoading && // Display a loading placeholder if the image is still loading
+            {  isLoading && // Display a loading placeholder if the image is still loading
                 <div 
                     className={`${isLoading ? `animate-pulse space-y-8 md:space-y-0 md:space-x-8 md:flex md:items-center
                     flex items-center justify-center 
@@ -38,11 +49,11 @@ function ImageCustom({
             {
                 src && <Image
                     loader={() => src} // Loader function that returns the image URL
-                    src={src} // Image source URL
+                    src={isImageExists && isImageExists[0] || src} // Image source URL
                     alt={alt} // Alternate text for the image
                     layout='fill' // Fill the container with the image
                     onLoadingComplete={handleImageLoaded} // Callback when the image finishes loading
-                    style={isLoading ? { display: 'none' } : { display: 'block', backgroundSize: "cover" }} // Conditional style for the image visibility
+                    style={{ backgroundSize: "cover",  opacity: isLoading ? 0 : 1  }} // Conditional style for the image visibility
                     unoptimized // Skip image optimization
                     priority // Mark the image as a priority for preloading
                 />

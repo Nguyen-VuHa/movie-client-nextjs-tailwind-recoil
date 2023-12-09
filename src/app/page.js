@@ -1,5 +1,5 @@
-
-import LayoutHomePage from "./LayoutHomePage";
+import React from "react";
+import WithUnauthLayout from "@/components/Auth/WithUnauthLayout";
 
 // write description -> SEO page
 export const metadata = {
@@ -13,8 +13,10 @@ export const metadata = {
 export default function HomePage() {
 
     return (
-        <>
-            <LayoutHomePage />
-        </>
+        <WithUnauthLayout>
+            <div>
+                Content Home Page
+            </div>
+        </WithUnauthLayout>
     )
 }

@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import React from 'react'
-import { movieState } from '@/atoms/movieState'
-import { useRecoilValue } from 'recoil'
 
 function Breadcrumb() {
     const movie = useRecoilValue(movieState)

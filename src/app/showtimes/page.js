@@ -1,3 +1,5 @@
+import WithUnauthLayout from "@/components/Auth/WithUnauthLayout"
+
 // write description -> SEO page
 export const metadata = {
     title: 'Lịch chiếu phim | BHD Star Cineplex',
@@ -10,10 +12,10 @@ export const metadata = {
 function ShowTime() {
 
     return (
-        <div>
+        <WithUnauthLayout>
             ShowTime
-        </div>
+        </WithUnauthLayout>
     )
 }
 
-export default ShowTime
+export default ShowTime;

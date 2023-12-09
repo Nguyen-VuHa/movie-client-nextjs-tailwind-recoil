@@ -3,33 +3,26 @@
 import React, { useEffect, useRef } from 'react'
 import ButtonCustom from '@/components/Common/ButtonCustom'
 import ImageCustom from '@/components/Common/ImageCustom'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { topMovieOfWeek } from '@/atoms/dashboardState'
 import HeroLoading from './HeroLoading'
 import Title from './Title'
-import { globalState } from '@/atoms/globalState'
 
 function Hero() {
-    const [global, setGlobal] = useRecoilState(globalState)
-    const dataTopMovie = useRecoilValue(topMovieOfWeek);
-    const { movieTopOfWeek, loadingFetch } = dataTopMovie
-
     const backgroudRef = useRef(null)
 
     useEffect(() => {
-        if(dataTopMovie.movieTopOfWeek && backgroudRef.current) {
-            const { poster } = dataTopMovie.movieTopOfWeek
-            const style = `
-                background: url(${poster}) 0% 0% / cover no-repeat;
-                width: 100%;
-                height: 100%;
-                position: relative;
-                transition: all 0.5s ease 0s;
-            `;
+        // if(dataTopMovie.movieTopOfWeek && backgroudRef.current) {
+        //     const { poster } = dataTopMovie.movieTopOfWeek
+        //     const style = `
+        //         background: url(${poster}) 0% 0% / cover no-repeat;
+        //         width: 100%;
+        //         height: 100%;
+        //         position: relative;
+        //         transition: all 0.5s ease 0s;
+        //     `;
 
-            backgroudRef.current.style = style;
-        }
-    }, [dataTopMovie])
+        //     backgroudRef.current.style = style;
+        // }
+    }, [])
     
 
     return (

@@ -1,3 +1,6 @@
+import React from "react"
+import WithUnauthLayout from "@/components/Auth/WithUnauthLayout"
+
 // write description -> SEO page
 export const metadata = {
     title: 'Rạp chiếu BHD | BHD Star Cineplex',
@@ -10,10 +13,10 @@ export const metadata = {
 function SystemCinema() {
     
     return (
-        <div>
+        <WithUnauthLayout>
             SystemCinema
-        </div>
+        </WithUnauthLayout>
     )
 }
 
-export default SystemCinema
+export default SystemCinema;

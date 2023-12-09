@@ -6,14 +6,11 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import Card from '@/components/Common/Card';
-import { useRecoilValue } from 'recoil';
-import { dataMovie } from '@/atoms/dashboardState';
 import dayjs from 'dayjs';
 import { Triangle } from 'react-loader-spinner';
 import Title from './Title';
 
 function MovieCommingSoon() {
-    const movieData = useRecoilValue(dataMovie);
     const { movieCommingSoon, loadingFetch } = movieData
 
     return (
