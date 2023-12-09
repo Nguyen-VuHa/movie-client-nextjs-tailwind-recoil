@@ -6,7 +6,7 @@ import { handleValidateFormLogin } from '@/validators/login'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIPAdressSignIn } from '@/redux/reducers/auth.reducer'
+import { actionAuth } from '@/redux/reducers/auth.reducer'
 import { setModalLogin, setModalSignUp } from '@/redux/reducers/modalStatus.reducer'
 
 function FormInput() {
@@ -26,7 +26,7 @@ function FormInput() {
             fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
-                dispatch(setIPAdressSignIn(data.ip))
+                dispatch(actionAuth.setIPAdressSignIn(data.ip))
             })
             .catch(error => console.log(error))
         }

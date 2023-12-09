@@ -11,7 +11,13 @@ export const authSlice =  createSlice({
         },
         errorSignIn: {},
         formSignUp: {
-            
+            fullName: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            phoneNumber: '',
+            birthDay: '',
+            address: '',
         },
         errorSignUp: {},
     },
@@ -26,13 +32,32 @@ export const authSlice =  createSlice({
         setIPAdressSignIn: (state, { payload }) => {
             state.formSignIn.ipAddress = payload
         },
-        
+        // set state Sign Up
+        setFullNameSignUp: (state, { payload }) => {
+            state.formSignUp.fullName = payload
+        },
+        setEmailSignUp: (state, { payload }) => {
+            state.formSignUp.email = payload
+        },
+        setPasswordSignUp: (state, { payload }) => {
+            state.formSignUp.password = payload
+        },
+        setPasswordConfirmSignUp: (state, { payload }) => {
+            state.formSignUp.confirmPassword = payload
+        },
+        setPhoneNumberSignUp: (state, { payload }) => {
+            state.formSignUp.phoneNumber = payload
+        },
+        setBirthDaySignUp: (state, { payload }) => {
+            state.formSignUp.birthDay = payload
+        },
+        setAddressSignUp: (state, { payload }) => {
+            state.formSignUp.address = payload
+        },
+
     }
 })
 
-
-export const { 
-    setEmailSignIn, setPasswordSignIn, setIPAdressSignIn,
-} = authSlice.actions;
+export const actionAuth = authSlice.actions;
 
 export default authSlice.reducer;

@@ -1,9 +1,8 @@
 
 import InputCustom from '@/components/Common/InputCustom'
-import { setEmailSignIn, setPasswordSignIn } from '@/redux/reducers/auth.reducer'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { actionAuth } from '@/redux/reducers/auth.reducer'
 
 export const InputEmail = () => {
     const { formSignIn } = useSelector(state => state.authState)
@@ -19,7 +18,7 @@ export const InputEmail = () => {
                 placeholder="xxx@gmail.com..."
                 value={email}
                 onChange={(text) => {
-                    dispatch(setEmailSignIn(text))
+                    dispatch(actionAuth.setEmailSignIn(text))
                 }}
                 errorMessage=""
             />
@@ -44,7 +43,7 @@ export const InputPassword = () => {
                 type="password"
                 value={password}
                 onChange={(text) => {
-                    dispatch(setPasswordSignIn(text))
+                    dispatch(actionAuth.setPasswordSignIn(text))
                 }}
                 errorMessage=""
             />
