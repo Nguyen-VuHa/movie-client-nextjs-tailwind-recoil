@@ -3,13 +3,16 @@ import React, { useState } from 'react'
 import { InputAddress, InputBirthDay, InputConfirmPassword, InputEmail, InputFullName, InputNumberPhone, InputPassword } from './GroupInput'
 import { handleValidateFormRegister } from '@/validators/register'
 import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { setModalLogin, setModalSignUp } from '@/redux/reducers/modalStatus.reducer'
 
 function FormInput() {
     const [isLoading, setIsLoading] = useState(false) // loading submit form
-
+    const dispatch = useDispatch()
     // redirect form login
     const handleRedirectLogin = () => {
-        
+        dispatch(setModalSignUp(false))
+        dispatch(setModalLogin(true))
     }
 
     const handleSubmitForm = async () => {

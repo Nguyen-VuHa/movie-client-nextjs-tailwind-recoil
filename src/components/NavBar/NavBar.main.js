@@ -5,9 +5,9 @@ import ButtonNav from './ButtonNav'
 import { SiHomebridge } from 'react-icons/si'
 import { FaPallet } from 'react-icons/fa'
 import { AiOutlineFieldTime } from 'react-icons/ai'
-// import AuthControl from './AuthControl'
-// import ModalLoginMain from '../Auth/ModalLogin/ModalLogin.main'
-// import ModalRegisterMain from '../Auth/ModalRegister/ModalRegister.main'
+import AuthControl from './AuthControl'
+import ModalLoginMain from '../Auth/ModalLogin/ModalLogin.main'
+import ModalRegisterMain from '../Auth/ModalRegister/ModalRegister.main'
 
 const ArrayMenu = [
     {
@@ -54,9 +54,9 @@ function NavBarMain() {
     return (
         <>
             {/* Modal login */}
-            {/* <ModalLoginMain /> */}
+            <ModalLoginMain />
             {/* Modal Register */}
-            {/* <ModalRegisterMain /> */}
+            <ModalRegisterMain />
             {/* Logo */}
             <a href="/" className='max-md:hidden'>
                 <ImageCustom 
@@ -83,7 +83,7 @@ function NavBarMain() {
             </nav>
 
             {/* Control User */}
-            {/* <AuthControl /> */}
+            <AuthControl />
         </>
         
     )

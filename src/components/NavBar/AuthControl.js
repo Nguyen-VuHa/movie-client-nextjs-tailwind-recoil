@@ -5,6 +5,9 @@ import { TiThMenu } from 'react-icons/ti'
 import UserInfo from './UserInfo';
 import Cookies from 'js-cookie';
 import { deleteAllCookies } from '@/utils/clearCookies';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDarkMode } from '@/redux/reducers/global.reducer';
+import { setModalLogin, setModalSignUp } from '@/redux/reducers/modalStatus.reducer';
 
 function AuthControl() {
     const groupBoxRef = useRef(null)
@@ -15,11 +18,11 @@ function AuthControl() {
 
     const [toggleMenu, setToggleMenu] = useState(false)
 
+    const { darkMode } = useSelector(state => state.globalState)
+    const dispatch = useDispatch()
+
     useLayoutEffect(() => {
-        setGlobal({
-            ...global,
-            darkMode: localStorage.getItem('theme') === 'dark' ? true : false
-        })
+        dispatch(setDarkMode(localStorage.getItem('theme') === 'dark' ? true : false))
 
         if (Cookies.get("token")) {
             let userObj = Cookies.get("user")
@@ -116,18 +119,16 @@ function AuthControl() {
                     >
                         <ButtonCustom 
                             buttonName="Đăng nhập"
-                            onClick={() => setModal({
-                                ...modal,
-                                modalLogin: true,
-                            })}
+                            onClick={() => {
+                                dispatch(setModalLogin(true)) // open modal login
+                            }}
                         />
                         <ButtonCustom 
                             className='ml-1'
                             buttonName="Đăng ký"
-                            onClick={() => setModal({
-                                ...modal,
-                                modalRegister: true,
-                            })}
+                            onClick={() => {
+                                dispatch(setModalSignUp(true)) // open modal sign up
+                            }}
                         />
 
                         <div className="h-[25px] w-[2px] mx-2 bg-primary-text border-0 dark:bg-gray-700" />
@@ -137,10 +138,7 @@ function AuthControl() {
                                 <input 
                                     type="checkbox" 
                                     onChange={() => {
-                                        setGlobal({
-                                            ...global,
-                                            darkMode: !darkMode
-                                        })
+                                        dispatch(setDarkMode(!darkMode))
 
                                         if(darkMode)
                                             localStorage.setItem('theme', 'light')

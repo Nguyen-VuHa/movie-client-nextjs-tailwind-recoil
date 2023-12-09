@@ -5,24 +5,28 @@ import { InputEmail, InputPassword } from './GroupInput'
 import { handleValidateFormLogin } from '@/validators/login'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
+import { useDispatch, useSelector } from 'react-redux'
+import { setIPAdressSignIn } from '@/redux/reducers/auth.reducer'
+import { setModalLogin, setModalSignUp } from '@/redux/reducers/modalStatus.reducer'
 
 function FormInput() {
     const [isLoading, setIsLoading] = useState(false) // loading submit form
+    const dispatch = useDispatch()
+    const { formSignIn } = useSelector(state => state.authState)
+    const { ipAddress } = formSignIn
 
     // redirect form register
     const handleRegister = () => {
-    
+        dispatch(setModalLogin(false))
+        dispatch(setModalSignUp(true))
     }
 
     useEffect(() => {
-        if(!login.ipAddress) {
+        if(!ipAddress) {
             fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
-                // setLogin({
-                //     ...login,
-                //     ipAddress: data.ip
-                // })
+                dispatch(setIPAdressSignIn(data.ip))
             })
             .catch(error => console.log(error))
         }

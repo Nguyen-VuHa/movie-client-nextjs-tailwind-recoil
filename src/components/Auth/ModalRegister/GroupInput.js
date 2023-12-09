@@ -6,6 +6,7 @@ import React from 'react'
 import dayjs from 'dayjs'
 
 export const InputFullName = () => {
+
     return (
         <div className='mb-2'>
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -13,11 +14,11 @@ export const InputFullName = () => {
             </label>
             <InputCustom 
                 placeholder="Nguyễn Văn A..."
-                value={fullName}
+                value=""
                 onChange={(text) => {
                    
                 }}
-                errorMessage={errFullName}
+                errorMessage=""
             />
         </div>
     )
@@ -25,11 +26,6 @@ export const InputFullName = () => {
 
 
 export const InputNumberPhone = () => {
-    const { numberPhone } = useRecoilValue(registerState)
-    const { errNumberPhone } = useRecoilValue(errorMessageRegisterState)
-
-    const [register, setRegister] = useRecoilState(registerState)
-    const [errRegister, setErrRegister] = useRecoilState(errorMessageRegisterState)
 
     return (
         <div className='mb-2'>
@@ -38,7 +34,7 @@ export const InputNumberPhone = () => {
             </label>
             <InputCustom 
                 placeholder="090.xxx.xxxx"
-                value={numberPhone}
+                value=""
                 onChange={(text) => {
                     if(text && handleRegexIsNumber(text))
                        
@@ -50,7 +46,7 @@ export const InputNumberPhone = () => {
                        
                     }
                 }}
-                errorMessage={errNumberPhone}
+                errorMessage=""
             />
         </div>
     )
@@ -65,14 +61,11 @@ export const InputBirthDay = () => {
             </label>
             <InputCustom 
                 type={"date"}
-                value={birthDay}
+                value=""
                 onChange={(text) => {
-                   
-                    if(errBirthDay) {
-                       
-                    }
+               
                 }}
-                errorMessage={errBirthDay}
+                errorMessage=""
             />
         </div>
     )
@@ -88,14 +81,10 @@ export const InputAddress = () => {
             </label>
             <InputAreaCustom 
                 placeholder="số 24, Phường A,..."
-                value={address}
+                value=""
                 onChange={(text) => {
-                   
-                    if(errAddress) {
-                     
-                    }
                 }}
-                errorMessage={errAddress}
+                errorMessage=""
             />
         </div>
     )
@@ -109,14 +98,11 @@ export const InputEmail = () => {
             </label>
             <InputCustom 
                 placeholder="xxx@gmail.com..."
-                value={email}
+                value=""
                 onChange={(text) => {
 
-                    if(errEmail) {
-                    
-                    }
                 }}
-                errorMessage={errEmail}
+                errorMessage=""
             />
         </div>
     )
@@ -134,15 +120,11 @@ export const InputPassword = () => {
             <InputCustom 
                 placeholder="xxxxxx"
                 type="password"
-                value={password}
+                value=""
                 onChange={(text) => {
                   
-
-                    if(errPassword) {
-                      
-                    }
                 }}
-                errorMessage={errPassword}
+                errorMessage=""
             />
         </div>
     )
@@ -158,13 +140,11 @@ export const InputConfirmPassword = () => {
             <InputCustom 
                 placeholder="xxxxxx"
                 type="password"
-                value={confirmPassword}
+                value=""
                 onChange={(text) => {
 
-                    if(errConfirmPassword) {
-                    }
                 }}
-                errorMessage={errConfirmPassword}
+                errorMessage=""
             />
         </div>
     )

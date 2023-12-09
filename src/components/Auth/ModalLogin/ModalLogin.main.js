@@ -2,17 +2,17 @@
 import React from 'react'
 import ModalCustom from '@/components/Common/ModalCustom'
 import FormInput from './FormInput'
+import { useDispatch, useSelector } from 'react-redux'
+import { setModalLogin } from '@/redux/reducers/modalStatus.reducer'
 
 function ModalLoginMain() {
+    const { modalLogin } = useSelector(state => state.modalStatusState)
+    const dispatch = useDispatch()
 
     // close modal login
     const handleCloseModal = () => {
-        setModal({
-            ...modal,
-            modalLogin: false,
-        })
+        dispatch(setModalLogin(false))
     }
-
   
     return (
         <ModalCustom status={modalLogin} onHidden={handleCloseModal}>
