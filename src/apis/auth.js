@@ -12,6 +12,21 @@ const authApi = {
 
         return axiosClient.post(url, data)
     },
+    noelSubmitName: (data) => {
+        const url = `api/auth/noel-2023/create`
+
+        return axiosClient.post(url, data)
+    },
+    getListGift: (data) => {
+        const url = `api/auth/noel-2023/list`
+
+        return axiosClient.post(url, data)
+    },
+    nodelChoose: (data) => {
+        const url = `api/auth/noel-2023/choose`
+
+        return axiosClient.post(url, data)
+    },
 }
 
 export default authApi;
