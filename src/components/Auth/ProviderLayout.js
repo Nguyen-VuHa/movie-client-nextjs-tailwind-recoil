@@ -1,24 +1,29 @@
+"use client"
+import { useEffect, useRef } from "react";
+import HeaderMain from "../Header/Header.Main";
 
 const ProviderLayout = ({ children }) => {
+  const backgroudRef = useRef(null)
+
+  useEffect(() => {
+    backgroudRef.current.style.background  = `url('https://c4.wallpaperflare.com/wallpaper/810/33/235/movies-avatar-1680x1050-entertainment-movies-hd-art-wallpaper-preview.jpg') 0% 0% / cover no-repeat`;
+  }, [])
+  
+
     return (
-      <main>
-        {/* <div 
-          className="absolute top-0 left-0 w-full h-full
-          before:bg-gradient-to-l before:from-[#000000d7] before:w-full before:h-full before:absolute
-          after:bg-gradient-to-t after:from-[#000000] after:w-full after:h-full after:absolute
-          flex justify-center items-center 
-          "
-        >
-          <div
-            className="absolute z-[1] w-full h-full bg-no-repeat bg-cover
-            background
-            "
-          >
-          </div>        
-           
-        </div> */}
-        {children}
-      </main>
+      <div 
+        ref={backgroudRef}
+        className="
+          fixed w-[100vw] h-[100vh]
+          before:bg-gradient-to-l before:absolute before:w-full before:h-full dark:before:from-[#121825d1] before:from-[#121825d1]
+          after:bg-gradient-to-t after:absolute after:w-full after:h-full dark:after:from-[#10141d9c] after:from-[#10141d9c]
+        "
+      > 
+        <HeaderMain />
+        <main>
+          {children}
+        </main>
+      </div>
     );
 };
 
