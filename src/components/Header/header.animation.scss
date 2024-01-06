@@ -1,0 +1,36 @@
+.header-show {
+    animation-name: header-show;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes header-show {
+    from { 
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+.show-transform {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation-name: show-transform;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1s;
+   
+}
+
+@keyframes show-transform {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+    }
+}
