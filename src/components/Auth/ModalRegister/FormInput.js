@@ -3,12 +3,15 @@ import React, { useState } from 'react'
 import { InputAddress, InputBirthDay, InputConfirmPassword, InputEmail, InputFullName, InputNumberPhone, InputPassword } from './GroupInput'
 import { handleValidateFormRegister } from '@/validators/register'
 import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setModalLogin, setModalSignUp } from '@/redux/reducers/modalStatus.reducer'
+import { actionAuth } from '@/redux/reducers/auth.reducer'
 
 function FormInput() {
     const [isLoading, setIsLoading] = useState(false) // loading submit form
     const dispatch = useDispatch()
+    const { formSignUp } = useSelector(state => state.authState)
+
     // redirect form login
     const handleRedirectLogin = () => {
         dispatch(setModalSignUp(false))
@@ -16,14 +19,14 @@ function FormInput() {
     }
 
     const handleSubmitForm = async () => {
-        const result = await handleValidateFormRegister(register)
+        const result = await handleValidateFormRegister(formSignUp)
 
         if(result && result?.status) 
         {
             // handle register
             setIsLoading(true);
             
-            const result = await handleCreateAccount(register);
+            const result = await handleCreateAccount(formSignUp);
 
             if(result?.status === 'FAILED') 
             {
@@ -37,6 +40,8 @@ function FormInput() {
             setIsLoading(false);
         } else {
             const { objError } = result
+
+            dispatch(actionAuth.setErrorSignUp(objError))
         }
     }
 

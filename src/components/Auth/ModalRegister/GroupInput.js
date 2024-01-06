@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DatePicker } from 'antd'
 
 export const InputFullName = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { fullName } = formSignUp
     const dispatch = useDispatch()
     
@@ -24,7 +24,7 @@ export const InputFullName = () => {
                 onChange={(text) => {
                    dispatch(actionAuth.setFullNameSignUp(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.fullName}
             />
         </div>
     )
@@ -32,8 +32,8 @@ export const InputFullName = () => {
 
 
 export const InputNumberPhone = () => {
-    const { formSignUp } = useSelector(state => state.authState)
-    const { phoneNumber } = formSignUp
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
+    const { numberPhone } = formSignUp
     const dispatch = useDispatch()
 
     return (
@@ -43,7 +43,7 @@ export const InputNumberPhone = () => {
             </label>
             <InputCustom 
                 placeholder="090.xxx.xxxx"
-                value={phoneNumber}
+                value={numberPhone}
                 onChange={(text) => {
                     if(text && handleRegexIsNumber(text)) {
                         dispatch(actionAuth.setPhoneNumberSignUp(text))
@@ -53,7 +53,7 @@ export const InputNumberPhone = () => {
                         dispatch(actionAuth.setPhoneNumberSignUp(''))
                     }
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.numberPhone}
             />
         </div>
     )
@@ -61,7 +61,7 @@ export const InputNumberPhone = () => {
 
 
 export const InputBirthDay = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { birthDay } = formSignUp
     const dispatch = useDispatch()
 
@@ -79,12 +79,13 @@ export const InputBirthDay = () => {
                     dispatch(actionAuth.setBirthDaySignUp(dayjs(value).format('YYYY-MM-DD')))
                 }}  
             />
+            <small className='mt-2 italic font-medium text-red-600 dark:text-red-500'>{errorSignUp.birthDay}</small>
         </div>
     )
 }
 
 export const InputAddress = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { address } = formSignUp
     const dispatch = useDispatch()
 
@@ -100,14 +101,14 @@ export const InputAddress = () => {
                 onChange={(text) => {
                     dispatch(actionAuth.setAddressSignUp(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.address}
             />
         </div>
     )
 }
 
 export const InputEmail = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { email } = formSignUp
     const dispatch = useDispatch()
 
@@ -122,7 +123,7 @@ export const InputEmail = () => {
                 onChange={(text) => {
                     dispatch(actionAuth.setEmailSignUp(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.email}
             />
         </div>
     )
@@ -131,7 +132,7 @@ export const InputEmail = () => {
 
 
 export const InputPassword = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { password } = formSignUp
     const dispatch = useDispatch()
 
@@ -147,14 +148,14 @@ export const InputPassword = () => {
                 onChange={(text) => {
                     dispatch(actionAuth.setPasswordSignUp(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.password}
             />
         </div>
     )
 }
 
 export const InputConfirmPassword = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { confirmPassword } = formSignUp
     const dispatch = useDispatch()
 
@@ -170,7 +171,6 @@ export const InputConfirmPassword = () => {
                 onChange={(text) => {
                     dispatch(actionAuth.setPasswordConfirmSignUp(text))
                 }}
-                errorMessage=""
             />
         </div>
     )

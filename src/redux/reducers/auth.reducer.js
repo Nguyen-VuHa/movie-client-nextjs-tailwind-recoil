@@ -15,7 +15,7 @@ export const authSlice =  createSlice({
             email: '',
             password: '',
             confirmPassword: '',
-            phoneNumber: '',
+            numberPhone: '',
             birthDay: '',
             address: '',
         },
@@ -33,6 +33,9 @@ export const authSlice =  createSlice({
             state.formSignIn.ipAddress = payload
         },
         // set state Sign Up
+        setErrorSignUp: (state, { payload }) => {
+            state.errorSignUp = payload
+        },
         setFullNameSignUp: (state, { payload }) => {
             state.formSignUp.fullName = payload
         },
@@ -46,7 +49,7 @@ export const authSlice =  createSlice({
             state.formSignUp.confirmPassword = payload
         },
         setPhoneNumberSignUp: (state, { payload }) => {
-            state.formSignUp.phoneNumber = payload
+            state.formSignUp.numberPhone = payload
         },
         setBirthDaySignUp: (state, { payload }) => {
             state.formSignUp.birthDay = payload
