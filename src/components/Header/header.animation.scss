@@ -5,6 +5,7 @@
 
 @keyframes header-show {
     from {
+        overflow: hidden;
         opacity: 0;
     }
     to {

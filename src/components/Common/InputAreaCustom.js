@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // CSS classes for different input states
 const classNames = {
@@ -19,6 +19,8 @@ function InputAreaCustom(
     }, 
     ref              // Forwarded ref for the textarea element
 ) {
+    const [isFocus, setIsFocus] = useState(false)
+
     return (
         <>
             {/* Textarea element */}
@@ -26,8 +28,9 @@ function InputAreaCustom(
                 ref={ref} // Attach the forwarded ref to the textarea
                 type={type || 'text'} // If the type prop is not provided, default to 'text'
                 className={`
-                    ${errorMessage ? classNames.error : value && !errorMessage ? classNames.success : ''} border-[1px]
+                    ${errorMessage ? classNames.error : value && !errorMessage ? classNames.success : ''} border-b-[1px]
                     text-sm rounded-sm outline-none font-medium bg-second-bg
+                    ${isFocus || value ? 'border-primary' : 'border-primary-text'}
                     block w-full p-2.5
                     ${className || ''}`
                 } // CSS classes for the textarea, combining the provided className prop with the default classes based on input state
@@ -35,6 +38,12 @@ function InputAreaCustom(
                 value={value} // Current value of the textarea
                 onChange={(e) => {
                     onChange && onChange(e.target.value) // Execute the onChange function when the textarea value changes
+                }}
+                onFocus={() => {
+                    setIsFocus(true)
+                }}
+                onBlur={() => {
+                    setIsFocus(false)
                 }}
                 {...rest} // Spread operator to apply any additional props passed to the textarea element
             />

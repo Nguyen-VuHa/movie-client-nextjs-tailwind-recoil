@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // CSS classes for different input states
 const classNames = {
@@ -19,6 +19,8 @@ function InputCustom(
     }, 
     ref              // Forwarded ref for the input element
 ) {
+    const [isFocus, setIsFocus] = useState(false)
+
     return (
         <>
             {/* Input element */}
@@ -26,8 +28,9 @@ function InputCustom(
                 ref={ref} // Attach the forwarded ref to the input
                 type={type || 'text'} // If the type prop is not provided, default to 'text'
                 className={`
-                    ${errorMessage ? classNames.error : value && !errorMessage ? classNames.success : ''} border-[1px]
-                    text-sm rounded-sm outline-none font-medium text-primary bg-second-bg
+                    ${errorMessage ? classNames.error : value && !errorMessage ? classNames.success : ''} border-b-[1px]
+                    text-sm rounded-sm outline-none font-medium text-primary bg-second-bg transition-all
+                    ${isFocus || value ? 'border-primary' : 'border-primary-text'}
                     block w-full p-2.5 h-[34px]
                     ${className || ''}`
                 } // CSS classes for the input, combining the provided className prop with the default classes based on input state
@@ -35,6 +38,12 @@ function InputCustom(
                 value={value} // Current value of the input
                 onChange={(e) => {
                     onChange && onChange(e.target.value) // Execute the onChange function when the input value changes
+                }}
+                onFocus={() => {
+                    setIsFocus(true)
+                }}
+                onBlur={() => {
+                    setIsFocus(false)
                 }}
                 {...rest} // Spread operator to apply any additional props passed to the input element
             />

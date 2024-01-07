@@ -1,9 +1,7 @@
 import React from 'react'
 import ImageCustom from '../Common/ImageCustom'
-import { ImFilm } from "react-icons/im";
 import { CgMenuRight } from "react-icons/cg";
 import { RiLoginCircleLine  } from "react-icons/ri";
-import { FaUserPlus } from "react-icons/fa";
 import './header.animation.scss'
 import ButtonHeader from './Button';
 import SelectMovie from './SelectMovie';

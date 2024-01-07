@@ -6,7 +6,6 @@ import React from 'react'
 import dayjs from 'dayjs'
 import { actionAuth } from '@/redux/reducers/auth.reducer'
 import { useDispatch, useSelector } from 'react-redux'
-import { DatePicker } from 'antd'
 import InputDatePicker from '@/components/Common/InputDatePicker'
 
 export const InputFullName = () => {
@@ -15,7 +14,7 @@ export const InputFullName = () => {
     const dispatch = useDispatch()
     
     return (
-        <div className='mb-2'>
+        <div>
             <label className="block mb-2 text-sm font-medium">
                 Họ & tên
             </label>
@@ -38,7 +37,7 @@ export const InputNumberPhone = () => {
     const dispatch = useDispatch()
 
     return (
-        <div className='mb-2'>
+        <div>
             <label className="block mb-2 text-sm font-medium">
                 Số điện thoại
             </label>
@@ -67,7 +66,7 @@ export const InputBirthDay = () => {
     const dispatch = useDispatch()
 
     return (
-        <div className='mb-2'>
+        <div>
             <label className="block mb-2 text-sm font-medium">
                 Ngày sinh nhật
             </label>
@@ -89,7 +88,7 @@ export const InputAddress = () => {
 
 
     return (
-        <div className='mb-2'>
+        <div>
             <label className="block mb-2 text-sm font-medium">
                 Địa chỉ thường trú
             </label>
@@ -111,7 +110,7 @@ export const InputEmail = () => {
     const dispatch = useDispatch()
 
     return (
-        <div className='mb-2'>
+        <div>
             <label className="block mb-2 text-sm font-medium">
                 Email
             </label>
@@ -135,7 +134,7 @@ export const InputPassword = () => {
     const dispatch = useDispatch()
 
     return (
-        <div className='mb-2'>
+        <div>
             <label className="block mb-2 text-sm font-medium">
                 Mật khẩu
             </label>
@@ -158,7 +157,7 @@ export const InputConfirmPassword = () => {
     const dispatch = useDispatch()
 
     return (
-        <div className='mb-2'>
+        <div>
             <label className="block mb-2 text-sm font-medium">
                 Nhập lại mật khẩu
             </label>

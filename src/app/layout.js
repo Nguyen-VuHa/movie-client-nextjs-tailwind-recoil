@@ -1,5 +1,6 @@
 import './globals.scss'
 import 'react-toastify/dist/ReactToastify.css'
+import '@/assets/styles/atnd.overwrite.scss'
 import { ConfigProvider } from 'antd'
 import ReduxProvider from '@/redux/provider'
 import ProviderLayout from '@/components/Auth/ProviderLayout'
@@ -11,17 +12,7 @@ export default function RootLayout({ children }) {
           <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
         </head>
         <body>
-          <ConfigProvider
-            theme={{
-              components: {
-                DatePicker: {
-                  colorPrimary: '#f9ab00',
-                  colorText: '#f9ab00',
-                  colorTextLabel: '#f9ab00',
-                },
-              },
-            }}
-          >
+          <ConfigProvider>
             <ReduxProvider>
               <ProviderLayout>
                 {children}

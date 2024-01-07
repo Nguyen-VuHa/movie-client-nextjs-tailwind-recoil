@@ -27,7 +27,7 @@ function ModalCustom({
     
     return (
         <div 
-            className={`fixed w-[100vw] h-[100vh] z-50 justify-center items-center
+            className={`fixed w-[100vw] h-[100vh] top-0 left-0 z-50 justify-center items-center
             modal-custom
             ${status ? 'show' : '' } 
             p-4 overflow-x-hidden overflow-y-auto md:inset-0`}
@@ -35,7 +35,7 @@ function ModalCustom({
             {/* The overlay div (clicking this will close the modal) */}
             <div onClick={() => onHidden && onHidden()} className='absolute top-0 left-0 w-full h-full bg-black/30'/>
             <div className={`relative w-full h-full modal-content ${maxWidth || 'max-w-md'} ${status ? 'show' : '' } md:h-auto`}>
-                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div className="relative rounded-lg shadow">
                     {/* Close button */}
                     <button onClick={() => onHidden && onHidden()}  className="transition-all z-[2] absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center :is(dark:hover:bg-gray-800) :is(dark:hover:text-white)">
                         <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
