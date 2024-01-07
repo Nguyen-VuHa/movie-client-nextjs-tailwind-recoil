@@ -6,6 +6,7 @@ import './header.animation.scss'
 import ButtonHeader from './Button';
 import SelectMovie from './SelectMovie';
 import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 function HeaderMain() {
   return (
@@ -21,13 +22,7 @@ function HeaderMain() {
         </div>
         <div className='flex items-center space-x-2'>
             <SignUp />
-
-            <ButtonHeader
-                className="show-right-left show-2 !text-black bg-primary border-primary hover:opacity-80"
-            >
-                <RiLoginCircleLine />
-                <span>Đăng nhập</span>
-            </ButtonHeader>
+            <SignIn />
             <div className='w-[1px] h-[20px] bg-primary-text show-right-left show-3'></div>
             <button 
                 className={`

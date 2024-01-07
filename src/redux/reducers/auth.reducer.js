@@ -23,6 +23,15 @@ export const authSlice =  createSlice({
     },
     reducers: { 
         // set state Sign In
+        setErrorMessageField: (state, {payload}) => {
+            state.errorSignIn = {
+                ...state.errorSignIn,
+                ...payload
+            }
+        },
+        setErrorMessageSingIn: (state, {payload}) => {
+            state.errorSignIn = payload
+        },
         setEmailSignIn: (state, { payload }) => {
             state.formSignIn.email = payload
         },
@@ -33,6 +42,9 @@ export const authSlice =  createSlice({
             state.formSignIn.ipAddress = payload
         },
         // set state Sign Up
+        setErrorMessageSingUp: (state, {payload}) => {
+            state.errorSignUp = payload
+        },
         setFullNameSignUp: (state, { payload }) => {
             state.formSignUp.fullName = payload
         },

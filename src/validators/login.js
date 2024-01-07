@@ -9,12 +9,12 @@ const handleEmptyText = (name) => {
     return `${name} không được rỗng`
 }
 
-export const handleValidateFormLogin = async (data) => {
-    const yupObjectData = yup.object().shape({
-        email: yup.string().email('Email không hợp lệ!').required(handleEmptyText('Email')),
-        password: yup.string().min(8, errorPassword.min).max(50, errorPassword.max).required(handleEmptyText('Mật khẩu')),
-    })
+const yupObjectData = yup.object().shape({
+    email: yup.string().email('Email không hợp lệ!').required(handleEmptyText('Email')),
+    password: yup.string().min(8, errorPassword.min).max(50, errorPassword.max).required(handleEmptyText('Mật khẩu')),
+})
 
+export const handleValidateFormLogin = async (data) => {
     const res = await yupObjectData.validate(data, { abortEarly: false }).then(() => {
         return {
             status: true,
@@ -34,4 +34,28 @@ export const handleValidateFormLogin = async (data) => {
     })
     
     return res;
+}
+
+export const handleValidateField = async (fieldName, value) => {
+    const fieldSchema = yupObjectData.fields[fieldName];
+    try {
+        await fieldSchema.validateSync(value)
+        
+        return {
+            status: true,
+            objError: {
+                [fieldName]: ''
+            },
+        }
+    } catch (err) {
+        let objError = {};
+
+        objError[fieldName] = err.message
+
+        return {
+            status: false,
+            objError: objError,
+        }
+    }
+    
 }

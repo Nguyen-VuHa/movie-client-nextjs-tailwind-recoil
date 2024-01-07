@@ -9,40 +9,40 @@ import { useDispatch, useSelector } from 'react-redux'
 import InputDatePicker from '@/components/Common/InputDatePicker'
 
 export const InputFullName = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { fullName } = formSignUp
     const dispatch = useDispatch()
     
     return (
-        <div>
+        <>
             <label className="block mb-2 text-sm font-medium">
                 Họ & tên
             </label>
             <InputCustom 
-                placeholder="Nguyễn Văn A..."
+                placeholder="Nhập họ tên của bạn"
                 value={fullName}
                 onChange={(text) => {
                    dispatch(actionAuth.setFullNameSignUp(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.fullName}
             />
-        </div>
+        </>
     )
 }
 
 
 export const InputNumberPhone = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { phoneNumber } = formSignUp
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <>
             <label className="block mb-2 text-sm font-medium">
                 Số điện thoại
             </label>
             <InputCustom 
-                placeholder="090.xxx.xxxx"
+                placeholder="Nhập số điện thoại của bạn"
                 value={phoneNumber}
                 onChange={(text) => {
                     if(text && handleRegexIsNumber(text)) {
@@ -53,36 +53,37 @@ export const InputNumberPhone = () => {
                         dispatch(actionAuth.setPhoneNumberSignUp(''))
                     }
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.numberPhone}
             />
-        </div>
+        </>
     )
 }
 
 
 export const InputBirthDay = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { birthDay } = formSignUp
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <>
             <label className="block mb-2 text-sm font-medium">
                 Ngày sinh nhật
             </label>
             <InputDatePicker 
-                placeholder='Select birthday'  
+                placeholder='Chọn ngày sinh nhật của bạn'  
                 value={birthDay && dayjs(birthDay)}
                 onChange={(value) => {
                     dispatch(actionAuth.setBirthDaySignUp(dayjs(value).format('YYYY-MM-DD')))
                 }}  
+                errorMessage={errorSignUp.birthDay}
             />
-        </div>
+        </>
     )
 }
 
 export const InputAddress = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { address } = formSignUp
     const dispatch = useDispatch()
 
@@ -93,83 +94,83 @@ export const InputAddress = () => {
                 Địa chỉ thường trú
             </label>
             <InputAreaCustom 
-                placeholder="số 24, Phường A,..."
+                placeholder="Nhập địa chỉ thường trú của bạn"
                 value={address}
                 onChange={(text) => {
                     dispatch(actionAuth.setAddressSignUp(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.address}
             />
         </div>
     )
 }
 
 export const InputEmail = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { email } = formSignUp
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <>
             <label className="block mb-2 text-sm font-medium">
                 Email
             </label>
             <InputCustom 
-                placeholder="xxx@gmail.com..."
+                placeholder="Nhập email của bạn"
                 value={email}
                 onChange={(text) => {
                     dispatch(actionAuth.setEmailSignUp(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.email}
             />
-        </div>
+        </>
     )
 }
 
 
 
 export const InputPassword = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { password } = formSignUp
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <>
             <label className="block mb-2 text-sm font-medium">
                 Mật khẩu
             </label>
             <InputCustom 
-                placeholder="xxxxxx"
+                placeholder="Nhập mật khẩu của bạn"
                 type="password"
                 value={password}
                 onChange={(text) => {
                     dispatch(actionAuth.setPasswordSignUp(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.password}
             />
-        </div>
+        </>
     )
 }
 
 export const InputConfirmPassword = () => {
-    const { formSignUp } = useSelector(state => state.authState)
+    const { formSignUp, errorSignUp } = useSelector(state => state.authState)
     const { confirmPassword } = formSignUp
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <>
             <label className="block mb-2 text-sm font-medium">
                 Nhập lại mật khẩu
             </label>
             <InputCustom 
-                placeholder="xxxxxx"
+                placeholder="Nhập lại mật khẩu"
                 type="password"
                 value={confirmPassword}
                 onChange={(text) => {
                     dispatch(actionAuth.setPasswordConfirmSignUp(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignUp.confirmPassword}
             />
-        </div>
+        </>
     )
 }

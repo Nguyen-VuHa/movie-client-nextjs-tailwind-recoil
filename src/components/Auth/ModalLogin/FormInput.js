@@ -7,9 +7,10 @@ import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionAuth } from '@/redux/reducers/auth.reducer'
-import { setModalLogin, setModalSignUp } from '@/redux/reducers/modalStatus.reducer'
+import { actionModal } from '@/redux/reducers/modalStatus.reducer'
 
 function FormInput() {
+    const  { modalLogin } = useSelector(state => state.modalStatusState)
     const [isLoading, setIsLoading] = useState(false) // loading submit form
     const dispatch = useDispatch()
     const { formSignIn } = useSelector(state => state.authState)
@@ -17,8 +18,8 @@ function FormInput() {
 
     // redirect form register
     const handleRegister = () => {
-        dispatch(setModalLogin(false))
-        dispatch(setModalSignUp(true))
+        dispatch(actionModal.setModalLogin(false))
+        dispatch(actionModal.setModalSignUp(true))
     }
 
     useEffect(() => {
@@ -34,14 +35,14 @@ function FormInput() {
 
     // handle submit login
     const handleLogin = async () => {
-        const { status, objError } = await handleValidateFormLogin(login) 
+        const { status, objError } = await handleValidateFormLogin(formSignIn) 
 
         if(status) 
         {
             // handle register
             setIsLoading(true);
             
-           const result = await handleLoginAccount(login);
+           const result = await handleLoginAccount(formSignIn);
 
             if(result?.status === 'FAILED') 
             {
@@ -64,11 +65,7 @@ function FormInput() {
 
             setIsLoading(false);
         } else {
-            // setErrorLogin( {
-            //     ...errLogin,
-            //     errEmail: objError.email || '',
-            //     errPassword: objError.password || '',
-            // })
+            dispatch(actionAuth.setErrorMessageSingIn(objError))
         }
 
     }
@@ -81,24 +78,34 @@ function FormInput() {
                 handleLogin()
             }}
         >
-            <InputEmail />
-            <InputPassword />
-            <div className="flex justify-between">
-                <a href="#" className="text-sm text-blue-700 hover:underline dark:text-blue-500">Quên mật khẩu?</a>
+            <div className={`input-form ${modalLogin && 'show' || ''}`}>
+                <InputEmail />
+            </div>
+            <div className={`input-form !delay-[200ms] ${modalLogin && 'show' || ''}`}>
+                <InputPassword />
+            </div>
+            <div className={`flex justify-between input-form !delay-[300ms] ${modalLogin && 'show' || ''}`}>
+                <a href="#" className="text-sm text-blue-700 hover:underline">Quên mật khẩu?</a>
             </div>
             <ButtonCustom
                 buttonName="Đăng nhập"
-                className="w-full"
+                className={`w-full flex input-form !delay-[400ms] ${modalLogin && 'show' || ''}`}
                 type="submit"
                 loading={isLoading}
                 loadingText="Đang đăng nhập..."
             /> 
             <hr />
-            <button type="button" disabled={!isLoading} className="w-full justify-center transition-colors text-primary-bg bg-[white] hover:text-white hover:bg-[#4285F4]/90 focus:outline-non font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2">
+            <button 
+                type="button" disabled={!isLoading} 
+                className={`w-full justify-center transition-colors text-primary-bg 
+                bg-[white] hover:text-white hover:bg-[#4285F4]/90 
+                focus:outline-non font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+                !inline-flex items-center mr-2 mb-2 input-form !delay-[500ms] ${modalLogin && 'show' || ''}`}
+            >
                 <FcGoogle size={22} className="mr-2" />
                 Đăng nhập với Google
             </button>
-            <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+            <div className={`text-sm font-medium text-gray-500 input-form !delay-[600ms] ${modalLogin && 'show' || ''}`}>
                 Bạn chưa có tài khoản? <a href="#" onClick={() => handleRegister()} className="text-blue-700 hover:underline dark:text-blue-500">Đăng ký tài khoản</a>
             </div>
         </form>

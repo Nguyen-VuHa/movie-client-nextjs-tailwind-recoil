@@ -15,6 +15,8 @@ function InputAreaCustom(
         errorMessage,    // Error message to display (if any)
         value,           // Current value of the textarea
         onChange,        // Function to be executed on textarea value change
+        name,            // name element input
+        onBlur,
         ...rest          // Rest of the props that can be applied to the textarea element
     }, 
     ref              // Forwarded ref for the textarea element
@@ -34,6 +36,7 @@ function InputAreaCustom(
                     block w-full p-2.5
                     ${className || ''}`
                 } // CSS classes for the textarea, combining the provided className prop with the default classes based on input state
+                name={name}
                 placeholder={placeholder || 'Nhập text...'} // If the placeholder prop is not provided, use the default value
                 value={value} // Current value of the textarea
                 onChange={(e) => {
@@ -42,8 +45,9 @@ function InputAreaCustom(
                 onFocus={() => {
                     setIsFocus(true)
                 }}
-                onBlur={() => {
+                onBlur={(e) => {
                     setIsFocus(false)
+                    onBlur && onBlur(e)
                 }}
                 {...rest} // Spread operator to apply any additional props passed to the textarea element
             />

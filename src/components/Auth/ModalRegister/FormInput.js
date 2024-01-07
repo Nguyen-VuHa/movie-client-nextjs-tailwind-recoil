@@ -4,27 +4,29 @@ import { InputAddress, InputBirthDay, InputConfirmPassword, InputEmail, InputFul
 import { handleValidateFormRegister } from '@/validators/register'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
-import { setModalLogin, setModalSignUp } from '@/redux/reducers/modalStatus.reducer'
+import { actionModal } from '@/redux/reducers/modalStatus.reducer'
+import { actionAuth } from '@/redux/reducers/auth.reducer'
 
 function FormInput() {
-    const { formSignIn } = useSelector(state => state.authState)
+    const  { modalSignUp } = useSelector(state => state.modalStatusState)
+    const { formSignUp } = useSelector(state => state.authState)
     const [isLoading, setIsLoading] = useState(false) // loading submit form
     const dispatch = useDispatch()
     // redirect form login
     const handleRedirectLogin = () => {
-        dispatch(setModalSignUp(false))
-        dispatch(setModalLogin(true))
+        dispatch(actionModal.setModalSignUp(false))
+        dispatch(actionModal.setModalLogin(true))
     }
 
     const handleSubmitForm = async () => {
-        const result = await handleValidateFormRegister(formSignIn)
+        const result = await handleValidateFormRegister(formSignUp)
 
         if(result && result?.status) 
         {
             // handle register
             setIsLoading(true);
             
-            const result = await handleCreateAccount(formSignIn);
+            const result = await handleCreateAccount(formSignUp);
 
             if(result?.status === 'FAILED') 
             {
@@ -38,7 +40,7 @@ function FormInput() {
             setIsLoading(false);
         } else {
             const { objError } = result
-            console.log(objError)
+            dispatch(actionAuth.setErrorMessageSingUp(objError))
         }
     }
 
@@ -51,16 +53,28 @@ function FormInput() {
                     handleSubmitForm();
                 }}
             >
-                <InputFullName />
-                <InputNumberPhone />
-                <InputBirthDay />
-                <InputEmail />
-                <InputPassword />
-                <InputConfirmPassword />
-                <div className='col-span-2'>
+                <div className={`input-form ${modalSignUp && 'show' || ''}`}>
+                    <InputFullName />
+                </div>
+                <div className={`input-form !delay-[100ms] ${modalSignUp && 'show' || ''}`}>
+                    <InputNumberPhone />
+                </div>
+                <div className={`input-form !delay-[200ms] ${modalSignUp && 'show' || ''}`}>
+                    <InputBirthDay />
+                </div>
+                <div className={`input-form !delay-[300ms] ${modalSignUp && 'show' || ''}`}>
+                    <InputEmail />
+                </div>
+                <div className={`input-form !delay-[400ms] ${modalSignUp && 'show' || ''}`}>
+                    <InputPassword />
+                </div>
+                <div className={`input-form !delay-[500ms] ${modalSignUp && 'show' || ''}`}>
+                    <InputConfirmPassword />
+                </div>
+                <div className={`col-span-2 input-form !delay-[600ms] ${modalSignUp && 'show' || ''}`}>
                     <InputAddress />
                 </div>
-                <div className='col-span-2 space-x-2 flex'>
+                <div className={`!flex col-span-2 space-x-2 input-form !delay-[700ms] ${modalSignUp && 'show' || ''}`}>
                     <ButtonCustom
                         buttonName="Đăng ký"
                         className="w-fit max-sm:my-2"
@@ -70,7 +84,7 @@ function FormInput() {
                     />
                     <div className='col-span-1 flex justify-start items-center'>
                         <div className="text-sm font-medium text-primary-text">
-                            Bạn đã có tài khoản? <a href="#" onClick={() => handleRedirectLogin()} className="text-blue-700 hover:underline dark:text-blue-500">Đăng nhập</a>
+                            Bạn đã có tài khoản? <a  href="#" onClick={() => handleRedirectLogin()} className="ml-2 text-blue-700 hover:underline dark:text-blue-500">Đăng nhập</a>
                         </div>
                     </div>
                 </div>

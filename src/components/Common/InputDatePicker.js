@@ -1,7 +1,7 @@
 import { DatePicker } from 'antd'
 import React from 'react'
 
-function InputDatePicker({placeholder, value, onChange, ...rest}) {
+function InputDatePicker({errorMessage, placeholder, value, onChange, ...rest}) {
     return (
         <>  
             <DatePicker 
@@ -16,6 +16,12 @@ function InputDatePicker({placeholder, value, onChange, ...rest}) {
                 activeBorderColor="red"
                 {...rest}
             />
+            {
+                errorMessage && // Display the error message (if provided)
+                <small className="mt-2 italic font-medium text-red-600 dark:text-red-500">
+                    {errorMessage}
+                </small>
+            }
         </>
     )
 }

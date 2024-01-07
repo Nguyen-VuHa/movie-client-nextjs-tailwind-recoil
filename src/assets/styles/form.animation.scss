@@ -1,0 +1,11 @@
+
+
+.input-form {
+    opacity: 0;
+    display: block;
+    transition: opacity 0.35s ease-in;
+
+    &.show {
+        opacity: 1;
+    }
+}

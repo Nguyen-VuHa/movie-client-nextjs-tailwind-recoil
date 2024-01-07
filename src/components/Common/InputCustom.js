@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 // CSS classes for different input states
 const classNames = {
-    error: "bg-red-50 border-red-500 text-red-900 placeholder-red-700 dark:text-red-500 dark:placeholder-red-500",
+    error: "bg-red-50 border-red-500 text-primary placeholder-red-700",
     success: "bg-success-text/10 border-success-text text-success-text ",
 }
 
@@ -10,11 +10,13 @@ const classNames = {
 function InputCustom(
     { 
         type,            // Type of the input (default is 'text')
-        className,       // Additional CSS classes for the input element
+        className,      // Additional CSS classes for the input element
+        name,       
         placeholder,     // Placeholder text for the input
         errorMessage,    // Error message to display (if any)
         value,           // Current value of the input
-        onChange,        // Function to be executed on input value change
+        onChange,   // Function to be executed on input value change
+        onBlur,     
         ...rest          // Rest of the props that can be applied to the input element
     }, 
     ref              // Forwarded ref for the input element
@@ -34,6 +36,7 @@ function InputCustom(
                     block w-full p-2.5 h-[34px]
                     ${className || ''}`
                 } // CSS classes for the input, combining the provided className prop with the default classes based on input state
+                name={name} // name element
                 placeholder={placeholder || 'Nhập text...'} // If the placeholder prop is not provided, use the default value
                 value={value} // Current value of the input
                 onChange={(e) => {
@@ -42,8 +45,9 @@ function InputCustom(
                 onFocus={() => {
                     setIsFocus(true)
                 }}
-                onBlur={() => {
+                onBlur={(e) => {
                     setIsFocus(false)
+                    onBlur && onBlur(e)
                 }}
                 {...rest} // Spread operator to apply any additional props passed to the input element
             />

@@ -1,6 +1,7 @@
 import './globals.scss'
 import 'react-toastify/dist/ReactToastify.css'
 import '@/assets/styles/atnd.overwrite.scss'
+import '@/assets/styles/form.animation.scss'
 import { ConfigProvider } from 'antd'
 import ReduxProvider from '@/redux/provider'
 import ProviderLayout from '@/components/Auth/ProviderLayout'
