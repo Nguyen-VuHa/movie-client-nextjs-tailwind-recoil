@@ -26,9 +26,9 @@ function InputCustom(
                 ref={ref} // Attach the forwarded ref to the input
                 type={type || 'text'} // If the type prop is not provided, default to 'text'
                 className={`
-                    ${errorMessage ? classNames.error : value && !errorMessage ? classNames.success : ':is(dark:placeholder-gray-400) dark:text-white dark:border-gray-500'} border
-                    text-sm rounded-[6px] outline-none font-medium
-                    block w-full p-2.5 dark:bg-gray-600
+                    ${errorMessage ? classNames.error : value && !errorMessage ? classNames.success : ''} border-[1px]
+                    text-sm rounded-sm outline-none font-medium text-primary bg-second-bg
+                    block w-full p-2.5 h-[34px]
                     ${className || ''}`
                 } // CSS classes for the input, combining the provided className prop with the default classes based on input state
                 placeholder={placeholder || 'Nhập text...'} // If the placeholder prop is not provided, use the default value

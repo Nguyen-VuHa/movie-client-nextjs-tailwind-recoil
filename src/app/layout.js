@@ -11,7 +11,17 @@ export default function RootLayout({ children }) {
           <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
         </head>
         <body>
-          <ConfigProvider>
+          <ConfigProvider
+            theme={{
+              components: {
+                DatePicker: {
+                  colorPrimary: '#f9ab00',
+                  colorText: '#f9ab00',
+                  colorTextLabel: '#f9ab00',
+                },
+              },
+            }}
+          >
             <ReduxProvider>
               <ProviderLayout>
                 {children}

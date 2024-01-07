@@ -1,36 +1,68 @@
 .header-show {
-    animation-name: header-show;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
+    animation: header-show 1s ease-in;
 }
 
+
 @keyframes header-show {
-    from { 
+    from {
         opacity: 0;
-        visibility: hidden;
     }
     to {
         opacity: 1;
-        visibility: visible;
     }
 }
 
 
-.show-transform {
-    transform: translateX(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    animation-name: show-transform;
-    animation-duration: 0.6s;
-    animation-timing-function: ease-in-out;
-    animation-delay: 1s;
-   
-}
+.show-left-right {
+    animation: show-left-right 1s ease-in;
+}   
 
-@keyframes show-transform {
+@keyframes show-left-right {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
     to {
         transform: translateX(0);
         opacity: 1;
-        visibility: visible;
     }
+}
+
+.show-right-left {
+    animation: show-right-left 1s ease-in;
+}   
+
+.show-1 {
+    animation-duration: 1s !important;
+}
+
+.show-2 {
+    animation-duration: 1.2s !important;
+}
+
+.show-3 {
+    animation-duration: 1.4s !important;
+}
+
+.show-4 {
+    animation-duration: 1.6s !important;
+}
+
+@keyframes show-right-left {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+// dropdown button all movie
+.drop-show {
+    visibility: visible;
+    opacity: 1;
+    transition: all .6s ease-in-out;
 }

@@ -23,13 +23,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        'primary-bg': "#121825",
-        'primary-text': "#e3ec35",
-        'success-text': "#44f275",
-        'color-hover': "#262c37",
-        'primary-content': "#a6b2c9",
-        'orange-txt': "#f15a22",
-        'primary': "#e3ec35",
+        'primary': "#f9ab00",
+        'primary-text': "#a6b2c9",
+        'primary-bg': '#1a191f',
+        'second-bg': '#222028',
       },
       screens: {
         'mobile': '400px', // => @media (min-width: 640px) { ... }

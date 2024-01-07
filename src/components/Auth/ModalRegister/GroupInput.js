@@ -7,6 +7,7 @@ import dayjs from 'dayjs'
 import { actionAuth } from '@/redux/reducers/auth.reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { DatePicker } from 'antd'
+import InputDatePicker from '@/components/Common/InputDatePicker'
 
 export const InputFullName = () => {
     const { formSignUp } = useSelector(state => state.authState)
@@ -15,7 +16,7 @@ export const InputFullName = () => {
     
     return (
         <div className='mb-2'>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium">
                 Họ & tên
             </label>
             <InputCustom 
@@ -38,7 +39,7 @@ export const InputNumberPhone = () => {
 
     return (
         <div className='mb-2'>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium">
                 Số điện thoại
             </label>
             <InputCustom 
@@ -67,13 +68,11 @@ export const InputBirthDay = () => {
 
     return (
         <div className='mb-2'>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium">
                 Ngày sinh nhật
             </label>
-            <DatePicker 
-                className='w-full h-[42px]'  
-                placeholder='Select birth day'    
-                allowClear={false}    
+            <InputDatePicker 
+                placeholder='Select birthday'  
                 value={birthDay && dayjs(birthDay)}
                 onChange={(value) => {
                     dispatch(actionAuth.setBirthDaySignUp(dayjs(value).format('YYYY-MM-DD')))
@@ -91,7 +90,7 @@ export const InputAddress = () => {
 
     return (
         <div className='mb-2'>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium">
                 Địa chỉ thường trú
             </label>
             <InputAreaCustom 
@@ -113,7 +112,7 @@ export const InputEmail = () => {
 
     return (
         <div className='mb-2'>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium">
                 Email
             </label>
             <InputCustom 
@@ -137,7 +136,7 @@ export const InputPassword = () => {
 
     return (
         <div className='mb-2'>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium">
                 Mật khẩu
             </label>
             <InputCustom 
@@ -160,7 +159,7 @@ export const InputConfirmPassword = () => {
 
     return (
         <div className='mb-2'>
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium">
                 Nhập lại mật khẩu
             </label>
             <InputCustom 

@@ -18,8 +18,5 @@ export const modalStatusSlice =  createSlice({
 })
 
 
-export const { 
-    setModalLogin, setModalSignUp
-} = modalStatusSlice.actions;
-
+export const actionModal = modalStatusSlice.actions;
 export default modalStatusSlice.reducer;
