@@ -3,17 +3,16 @@ import { FcGoogle } from 'react-icons/fc'
 import ButtonCustom from '@/components/Common/ButtonCustom'
 import { InputEmail, InputPassword } from './GroupInput'
 import { handleValidateFormLogin } from '@/validators/login'
-import { toast } from 'react-toastify'
-import Cookies from 'js-cookie'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionAuth } from '@/redux/reducers/auth.reducer'
 import { actionModal } from '@/redux/reducers/modalStatus.reducer'
+import { handleEnCodeKey, handleEnCodeString } from '@/utils/endcrypt'
+import dayjs from 'dayjs'
 
 function FormInput() {
     const  { modalLogin } = useSelector(state => state.modalStatusState)
-    const [isLoading, setIsLoading] = useState(false) // loading submit form
     const dispatch = useDispatch()
-    const { formSignIn } = useSelector(state => state.authState)
+    const { formSignIn, isLogin } = useSelector(state => state.authState)
     const { ipAddress } = formSignIn
 
     // redirect form register
@@ -39,31 +38,21 @@ function FormInput() {
 
         if(status) 
         {
-            // handle register
-            setIsLoading(true);
+            let keyTime = dayjs().add(10, 's') // add time 10s - time expried if current time exceeds 
+            let keyTimeStr = new Date(keyTime).getTime().toString()
+    
+            let arrHash = handleEnCodeKey(keyTimeStr)
             
-           const result = await handleLoginAccount(formSignIn);
+            let strData = Buffer.from(handleEnCodeString(JSON.stringify(formSignIn), arrHash)).toString('base64')
+    
+            let dataEncrypt = `${handleEnCodeString(strData, arrHash)}.${keyTimeStr}` // endcode with arrHash
 
-            if(result?.status === 'FAILED') 
-            {
-                toast.warn(result?.message)
-            } 
-            
-            if(result.status === 'SUCCESS') {
-                toast.success(result?.message)
-
-                // setModal({
-                //     ...modal,
-                //     modalLogin: false,
-                // })
-
-                const { accessToken, refreshToken, user } = result.data;
-                Cookies.set('token', accessToken, { expires: 365  })
-                Cookies.set('refreshToken', refreshToken, { expires: 365  })
-                Cookies.set('user', JSON.stringify(user), { expires: 365  })
-            }
-
-            setIsLoading(false);
+            dispatch({
+                type: 'AUTH_LOGIN_ACCOUNT',
+                payload: {
+                    data: dataEncrypt
+                }
+            })
         } else {
             dispatch(actionAuth.setErrorMessageSingIn(objError))
         }
@@ -89,14 +78,14 @@ function FormInput() {
             </div>
             <ButtonCustom
                 buttonName="Đăng nhập"
-                className={`w-full flex input-form !delay-[400ms] ${modalLogin && 'show' || ''}`}
+                className={`w-full !flex input-form !delay-[400ms] ${modalLogin && 'show' || ''}`}
                 type="submit"
-                loading={isLoading}
+                loading={isLogin}
                 loadingText="Đang đăng nhập..."
             /> 
             <hr />
             <button 
-                type="button" disabled={!isLoading} 
+                type="button" disabled={!isLogin} 
                 className={`w-full justify-center transition-colors text-primary-bg 
                 bg-[white] hover:text-white hover:bg-[#4285F4]/90 
                 focus:outline-non font-medium rounded-lg text-sm px-5 py-2.5 text-center 

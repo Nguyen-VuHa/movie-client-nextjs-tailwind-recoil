@@ -1,15 +1,20 @@
+import { message } from "antd"
+import Cookies from 'js-cookie'
 const { createSlice } = require("@reduxjs/toolkit");
 
 
 export const authSlice =  createSlice({
     name: 'authenticate',
     initialState: {
+        // state login
         formSignIn: {
             email: '',
             password: '',
             ipAddress: '',
         },
         errorSignIn: {},
+        isLogin: false,
+        // state register
         formSignUp: {
             fullName: '',
             email: '',
@@ -23,6 +28,21 @@ export const authSlice =  createSlice({
     },
     reducers: { 
         // set state Sign In
+        processLogin: (state, { payload }) => {
+            if (payload.status == "SUCCESS") {
+                const { accessToken, refreshToken, user } = payload;
+                Cookies.set('token', accessToken, { expires: 365  })
+                Cookies.set('refreshToken', refreshToken, { expires: 365  })
+                Cookies.set('user', JSON.stringify(user), { expires: 365  })
+
+                message.success(payload?.message || "Login success.")
+            } else {
+                message.error(payload.message || "Login failed.")
+            }
+        },      
+        setStatusLogin: (state, {payload}) => {
+            state.isLogin = payload
+        },  
         setErrorMessageField: (state, {payload}) => {
             state.errorSignIn = {
                 ...state.errorSignIn,
@@ -66,7 +86,6 @@ export const authSlice =  createSlice({
         setAddressSignUp: (state, { payload }) => {
             state.formSignUp.address = payload
         },
-
     }
 })
 

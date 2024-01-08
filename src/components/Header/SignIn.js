@@ -1,7 +1,6 @@
 import React from 'react'
 import ButtonHeader from './Button'
 import { RiLoginCircleLine } from 'react-icons/ri'
-import ModalLoginMain from '../Auth/ModalLogin/ModalLogin.main'
 import { useDispatch } from 'react-redux'
 import { actionModal } from '@/redux/reducers/modalStatus.reducer'
 
@@ -10,7 +9,6 @@ function SignIn() {
 
     return (
         <>
-            <ModalLoginMain />
             <ButtonHeader
                 onClick={() => {
                     dispatch(actionModal.setModalLogin(true))

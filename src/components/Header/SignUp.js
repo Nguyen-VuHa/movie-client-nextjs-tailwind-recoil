@@ -1,8 +1,7 @@
 import React from 'react'
 import ButtonHeader from './Button'
 import { FaUserPlus } from 'react-icons/fa'
-import ModalRegisterMain from '../Auth/ModalRegister/ModalRegister.main'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { actionModal } from '@/redux/reducers/modalStatus.reducer'
 
 function SignUp() {
@@ -10,7 +9,6 @@ function SignUp() {
 
     return (
         <>
-            <ModalRegisterMain />
             <ButtonHeader
                 className="show-right-left show-1"
                 onClick={() => {

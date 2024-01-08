@@ -27,7 +27,7 @@ function ModalCustom({
     
     return (
         <div 
-            className={`fixed w-[99vw] h-[100vh] top-0 left-0 z-50 justify-center items-center
+            className={`fixed w-[100vw] h-[100vh] top-0 left-0 z-50 justify-center items-center
             modal-custom
             ${status ? 'show' : '' } 
             overflow-x-hidden overflow-y-auto`}
