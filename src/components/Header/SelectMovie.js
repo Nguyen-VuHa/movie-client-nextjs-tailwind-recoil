@@ -37,7 +37,7 @@ function SelectMovie() {
             </div>
             <div 
                 className={`absolute z-[100] top-[110%] invisible opacity-0
-                border-b-[2px] border-t-[2px] p-2 border-primary
+                border-b-[2px] border-t-[2px] p-2 border-primary bg-primary/10
                 left-0 w-[150%] rounded-lg space-y-2 ${isDropDown && 'drop-show'}`}
                 ref={dropBoxRef}
             >
