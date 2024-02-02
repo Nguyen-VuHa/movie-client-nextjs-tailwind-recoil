@@ -6,11 +6,12 @@ import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import { actionModal } from '@/redux/reducers/modalStatus.reducer'
 import { actionAuth } from '@/redux/reducers/auth.reducer'
+import { handleEnCodeKey, handleEnCodeString } from '@/utils/endcrypt'
+import dayjs from 'dayjs'
 
 function FormInput() {
     const  { modalSignUp } = useSelector(state => state.modalStatusState)
-    const { formSignUp } = useSelector(state => state.authState)
-    const [isLoading, setIsLoading] = useState(false) // loading submit form
+    const { formSignUp, isSignUp } = useSelector(state => state.authState)
     const dispatch = useDispatch()
     // redirect form login
     const handleRedirectLogin = () => {
@@ -23,21 +24,22 @@ function FormInput() {
 
         if(result && result?.status) 
         {
-            // handle register
-            setIsLoading(true);
+            let keyTime = dayjs().add(10, 's') // add time 10s - time expried if current time exceeds 
+            let keyTimeStr = new Date(keyTime).getTime().toString()
+    
+            let arrHash = handleEnCodeKey(keyTimeStr)
             
-            const result = await handleCreateAccount(formSignUp);
+            let strData = Buffer.from(handleEnCodeString(JSON.stringify(formSignUp), arrHash)).toString('base64')
+    
+            let dataEncrypt = `${handleEnCodeString(strData, arrHash)}.${keyTimeStr}` // endcode with arrHash
 
-            if(result?.status === 'FAILED') 
-            {
-                toast.warn(result?.message)
-            } 
-            
-            if(result?.status === 'SUCCESS') {
-                toast.success(result?.message)
-            }
 
-            setIsLoading(false);
+            dispatch({
+                type: 'AUTH_SIGN_UP_ACCOUNT',
+                payload: {
+                    data: dataEncrypt,
+                }
+            })
         } else {
             const { objError } = result
             dispatch(actionAuth.setErrorMessageSingUp(objError))
@@ -79,7 +81,7 @@ function FormInput() {
                         buttonName="Đăng ký"
                         className="w-fit max-sm:my-2"
                         type="submit"
-                        loading={isLoading}
+                        loading={isSignUp}
                         loadingText="Đang xử lí..."
                     />
                     <div className='col-span-1 flex justify-start items-center'>

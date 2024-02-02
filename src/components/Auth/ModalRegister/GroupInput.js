@@ -7,6 +7,7 @@ import dayjs from 'dayjs'
 import { actionAuth } from '@/redux/reducers/auth.reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import InputDatePicker from '@/components/Common/InputDatePicker'
+import { handleValidateFieldSignUp } from '@/validators/register'
 
 export const InputFullName = () => {
     const { formSignUp, errorSignUp } = useSelector(state => state.authState)
@@ -21,10 +22,17 @@ export const InputFullName = () => {
             <InputCustom 
                 placeholder="Nhập họ tên của bạn"
                 value={fullName}
+                name="fullName"
                 onChange={(text) => {
                    dispatch(actionAuth.setFullNameSignUp(text))
                 }}
                 errorMessage={errorSignUp.fullName}
+                onBlur={async (e) => {
+                    const { name, value } = e.target
+                    const resCheck = await handleValidateFieldSignUp(name, value)
+
+                    dispatch(actionAuth.setErrorMessageFieldSignUp(resCheck.objError))
+                }}
             />
         </>
     )
@@ -33,7 +41,7 @@ export const InputFullName = () => {
 
 export const InputNumberPhone = () => {
     const { formSignUp, errorSignUp } = useSelector(state => state.authState)
-    const { phoneNumber } = formSignUp
+    const { numberPhone } = formSignUp
     const dispatch = useDispatch()
 
     return (
@@ -43,7 +51,8 @@ export const InputNumberPhone = () => {
             </label>
             <InputCustom 
                 placeholder="Nhập số điện thoại của bạn"
-                value={phoneNumber}
+                value={numberPhone}
+                name="numberPhone"
                 onChange={(text) => {
                     if(text && handleRegexIsNumber(text)) {
                         dispatch(actionAuth.setPhoneNumberSignUp(text))
@@ -54,6 +63,12 @@ export const InputNumberPhone = () => {
                     }
                 }}
                 errorMessage={errorSignUp.numberPhone}
+                onBlur={async (e) => {
+                    const { name, value } = e.target
+                    const resCheck = await handleValidateFieldSignUp(name, value)
+
+                    dispatch(actionAuth.setErrorMessageFieldSignUp(resCheck.objError))
+                }}
             />
         </>
     )
@@ -96,10 +111,17 @@ export const InputAddress = () => {
             <InputAreaCustom 
                 placeholder="Nhập địa chỉ thường trú của bạn"
                 value={address}
+                name="address"
                 onChange={(text) => {
                     dispatch(actionAuth.setAddressSignUp(text))
                 }}
                 errorMessage={errorSignUp.address}
+                onBlur={async (e) => {
+                    const { name, value } = e.target
+                    const resCheck = await handleValidateFieldSignUp(name, value)
+
+                    dispatch(actionAuth.setErrorMessageFieldSignUp(resCheck.objError))
+                }}
             />
         </div>
     )
@@ -118,10 +140,17 @@ export const InputEmail = () => {
             <InputCustom 
                 placeholder="Nhập email của bạn"
                 value={email}
+                name="email"
                 onChange={(text) => {
                     dispatch(actionAuth.setEmailSignUp(text))
                 }}
                 errorMessage={errorSignUp.email}
+                onBlur={async (e) => {
+                    const { name, value } = e.target
+                    const resCheck = await handleValidateFieldSignUp(name, value)
+
+                    dispatch(actionAuth.setErrorMessageFieldSignUp(resCheck.objError))
+                }}
             />
         </>
     )
@@ -142,11 +171,18 @@ export const InputPassword = () => {
             <InputCustom 
                 placeholder="Nhập mật khẩu của bạn"
                 type="password"
+                name="password"
                 value={password}
                 onChange={(text) => {
                     dispatch(actionAuth.setPasswordSignUp(text))
                 }}
                 errorMessage={errorSignUp.password}
+                onBlur={async (e) => {
+                    const { name, value } = e.target
+                    const resCheck = await handleValidateFieldSignUp(name, value)
+
+                    dispatch(actionAuth.setErrorMessageFieldSignUp(resCheck.objError))
+                }}
             />
         </>
     )
@@ -165,11 +201,18 @@ export const InputConfirmPassword = () => {
             <InputCustom 
                 placeholder="Nhập lại mật khẩu"
                 type="password"
+                name="confirmPassword"
                 value={confirmPassword}
                 onChange={(text) => {
                     dispatch(actionAuth.setPasswordConfirmSignUp(text))
                 }}
                 errorMessage={errorSignUp.confirmPassword}
+                onBlur={async (e) => {
+                    const { name, value } = e.target
+                    const resCheck = await handleValidateFieldSignUp(name, value)
+
+                    dispatch(actionAuth.setErrorMessageFieldSignUp(resCheck.objError))
+                }}
             />
         </>
     )

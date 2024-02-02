@@ -1,5 +1,8 @@
 import { message } from "antd"
 import Cookies from 'js-cookie'
+import { redirect } from "next/navigation";
+import { actionModal } from "./modalStatus.reducer";
+import { store } from "../store";
 const { createSlice } = require("@reduxjs/toolkit");
 
 
@@ -20,16 +23,21 @@ export const authSlice =  createSlice({
             email: '',
             password: '',
             confirmPassword: '',
-            phoneNumber: '',
+            numberPhone: '',
             birthDay: '',
             address: '',
         },
         errorSignUp: {},
+        isSignUp: false,
     },
     reducers: { 
         // set state Sign In
         processLogin: (state, { payload }) => {
             if (payload.status == "SUCCESS") {
+                state.formSignIn.email = ''
+                state.formSignIn.password = ''
+                state.errorSignIn = {}
+
                 const { accessToken, refreshToken, user } = payload;
                 Cookies.set('token', accessToken, { expires: 365  })
                 Cookies.set('refreshToken', refreshToken, { expires: 365  })
@@ -62,6 +70,37 @@ export const authSlice =  createSlice({
             state.formSignIn.ipAddress = payload
         },
         // set state Sign Up
+        processSignUp: (state, { payload }) => {
+            if (payload.status == "SUCCESS") {
+                message.success(payload?.message || "Sign up account success.")
+                state.formSignUp =  {
+                    fullName: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: '',
+                    numberPhone: '',
+                    birthDay: '',
+                    address: '',
+                }
+                state.errorSignUp = {}
+                actionModal.setModalSignUp(false)
+                actionModal.setModalLogin(true)
+            } else {
+                message.error(payload.message || "Sign up account failed.")
+                // store.getState(actionModal.setModalSignUp(false))
+                // store.getState(actionModal.setModalLogin(true))
+                
+            }
+        },      
+        setStatusSignUp: (state, {payload}) => {
+            state.isSignUp = payload
+        },  
+        setErrorMessageFieldSignUp: (state, {payload}) => {
+            state.errorSignUp = {
+                ...state.errorSignUp,
+                ...payload
+            }
+        },
         setErrorMessageSingUp: (state, {payload}) => {
             state.errorSignUp = payload
         },
@@ -78,7 +117,7 @@ export const authSlice =  createSlice({
             state.formSignUp.confirmPassword = payload
         },
         setPhoneNumberSignUp: (state, { payload }) => {
-            state.formSignUp.phoneNumber = payload
+            state.formSignUp.numberPhone = payload
         },
         setBirthDaySignUp: (state, { payload }) => {
             state.formSignUp.birthDay = payload
