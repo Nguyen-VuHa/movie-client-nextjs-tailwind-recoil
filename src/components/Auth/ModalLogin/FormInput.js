@@ -34,14 +34,14 @@ function FormInput() {
 
     // handle submit login
     const handleLogin = async () => {
-        const { status, objError } = await handleValidateFormLogin(login) 
+        const { status, objError } = await handleValidateFormLogin(formSignIn) 
 
         if(status) 
         {
             // handle register
             setIsLoading(true);
             
-           const result = await handleLoginAccount(login);
+           const result = await handleLoginAccount(formSignIn);
 
             if(result?.status === 'FAILED') 
             {
@@ -51,6 +51,7 @@ function FormInput() {
             if(result.status === 'SUCCESS') {
                 toast.success(result?.message)
 
+    
                 // setModal({
                 //     ...modal,
                 //     modalLogin: false,
@@ -64,11 +65,7 @@ function FormInput() {
 
             setIsLoading(false);
         } else {
-            // setErrorLogin( {
-            //     ...errLogin,
-            //     errEmail: objError.email || '',
-            //     errPassword: objError.password || '',
-            // })
+            dispatch(actionAuth.setErrorSignIn(objError))
         }
 
     }

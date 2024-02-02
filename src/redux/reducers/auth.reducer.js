@@ -32,6 +32,9 @@ export const authSlice =  createSlice({
         setIPAdressSignIn: (state, { payload }) => {
             state.formSignIn.ipAddress = payload
         },
+        setErrorSignIn: (state, { payload }) => {
+            state.errorSignIn = payload
+        },
         // set state Sign Up
         setErrorSignUp: (state, { payload }) => {
             state.errorSignUp = payload
@@ -57,7 +60,6 @@ export const authSlice =  createSlice({
         setAddressSignUp: (state, { payload }) => {
             state.formSignUp.address = payload
         },
-
     }
 })
 

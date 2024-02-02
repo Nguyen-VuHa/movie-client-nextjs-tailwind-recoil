@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actionAuth } from '@/redux/reducers/auth.reducer'
 
 export const InputEmail = () => {
-    const { formSignIn } = useSelector(state => state.authState)
+    const { formSignIn, errorSignIn } = useSelector(state => state.authState)
     const { email }= formSignIn
 
     const dispatch = useDispatch()
@@ -20,7 +20,7 @@ export const InputEmail = () => {
                 onChange={(text) => {
                     dispatch(actionAuth.setEmailSignIn(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignIn.password}
             />
         </div>
     )
@@ -28,7 +28,7 @@ export const InputEmail = () => {
 
 
 export const InputPassword = () => {
-    const { formSignIn } = useSelector(state => state.authState)
+    const { formSignIn, errorSignIn } = useSelector(state => state.authState)
     const { password }= formSignIn
 
     const dispatch = useDispatch()
@@ -45,7 +45,7 @@ export const InputPassword = () => {
                 onChange={(text) => {
                     dispatch(actionAuth.setPasswordSignIn(text))
                 }}
-                errorMessage=""
+                errorMessage={errorSignIn.password}
             />
         </div>
     )
