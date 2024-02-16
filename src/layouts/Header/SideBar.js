@@ -6,6 +6,7 @@ import { GiFilmSpool } from "react-icons/gi";
 import { SiThemoviedatabase } from "react-icons/si";
 import { MdMovieFilter } from "react-icons/md";
 import { GiTheater } from "react-icons/gi";
+import ImageCustom from '@/components/Common/Image.Custom';
 
 
 function SideBar({ isSideBar, onHiden, menuRef }) {
@@ -37,11 +38,14 @@ function SideBar({ isSideBar, onHiden, menuRef }) {
                 >
                     <TfiClose size={22} className='hover:text-primary transition-all text-primary-text'/>
                 </ButtonIcon>
-                <div>BHD Star Cineplex</div>
+                <ImageCustom 
+                    src="https://www.tiendauroi.com/wp-content/uploads/2020/02/bhd-star-cinema.png"
+                    className='w-[150px] h-[35px]'
+                />
             </div>
             <div className='p-3 w-full side-bar space-y-3'>
                 <SideBarButton 
-                    sidebarName="Trang Chủ"
+                    sidebarName="BHD Star"
                     icon={<GiFilmSpool />}
                 />
                 <SideBarButton 

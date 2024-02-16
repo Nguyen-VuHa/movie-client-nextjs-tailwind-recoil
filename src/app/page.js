@@ -1,4 +1,6 @@
+import Hero from "@/components/HomePage/Hero";
 import React from "react";
+import '@/components/HomePage/homepage.scss'
 
 // write description -> SEO page
 export const metadata = {
@@ -12,8 +14,8 @@ export const metadata = {
 export default function HomePage() {
 
     return (
-        <div>
-            Content Home Page
+        <div className="mt-[50px]">
+            <Hero />
         </div>
     )
 }

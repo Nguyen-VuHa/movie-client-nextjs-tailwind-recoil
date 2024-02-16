@@ -5,6 +5,7 @@ import './_header.scss'
 import { Button, ButtonIcon } from '@/components/Common/Button.Custom'
 import { CgMenuRight } from "react-icons/cg";
 import SideBar from './SideBar';
+import ImageCustom from '@/components/Common/Image.Custom';
 
 function HeaderMain() {
     const btnMenuRef = useRef(null)
@@ -17,9 +18,14 @@ function HeaderMain() {
                 isSideBar={isSidebar}
                 onHiden={() => {setIsSidebar(2)}}
             />
-            <div className='wrap-header'>
-                <div className='flex justify-between items-center'>
-                    <div>Logo</div>
+            <div className='wrap-header overflow-hidden w-full z-[3]'>
+                <div className='flex justify-between items-center backdrop-blur-sm px-[3rem] py-[2rem]'>
+                    <a href="/" className='max-md:hidden'>
+                        <ImageCustom 
+                            src="https://www.tiendauroi.com/wp-content/uploads/2020/02/bhd-star-cinema.png"
+                            className='mobile:hidden max-md:w-[200px] lg:w-[220px] h-[55px]'
+                        />
+                    </a>
                     <div className='flex space-x-1'>
                         <Button
                             className="px-10"

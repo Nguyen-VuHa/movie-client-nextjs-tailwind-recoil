@@ -5,7 +5,7 @@ export const Button = ({ className, onClick, children, outLine }) => {
         <div
             className={`flex items-center ${className || ''} 
             space-x-2 px-8 show-right-left show-2 
-            text-[13px] ${outLine ? 'text-primary-text border-primary hover:bg-primary hover:text-white' : 'border-primary text-white bg-primary hover:opacity-80'}
+            text-[13px] text-white ${outLine ? 'border-primary hover:bg-primary' : 'border-primary bg-primary hover:opacity-80'}
             border-[0.5px] rounded-[12px] !transition-all !duration-300
             select-none cursor-pointer`}
             onClick={(e) => onClick && onClick(e)}
