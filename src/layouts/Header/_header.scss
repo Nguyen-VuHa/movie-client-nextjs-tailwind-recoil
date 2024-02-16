@@ -1,0 +1,36 @@
+
+
+.wrap-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    padding: 2rem 3rem;
+}
+
+.sidebar-fade-in {
+    animation: sidebar-fade-in .5s forwards;
+}
+
+@keyframes sidebar-fade-in {
+    0% {
+        right: -100%;
+    }
+    100% {
+        right: 0%;
+    }
+}
+
+.sidebar-fade-out {
+    animation: sidebar-fade-out .5s forwards;
+}
+
+@keyframes sidebar-fade-out {
+    0% {
+        right: 0%;
+    }
+    100% {
+        right: -100%;
+    }
+}

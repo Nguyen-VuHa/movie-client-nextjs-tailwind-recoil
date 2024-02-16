@@ -1,9 +1,8 @@
 "use client"
-import './globals.scss'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { ConfigProvider } from 'antd'
 import ReduxProvider from '@/redux/provider'
+import '@/assets/styles/_main.scss'
 
 export default function RootLayout({ children }) {
   return (
@@ -11,14 +10,12 @@ export default function RootLayout({ children }) {
         <head>
           <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
         </head>
-        <body className='dark:bg-primary-bg'>
+        <body>
             <ToastContainer 
               theme="colored"
             />
             <ReduxProvider>
-              <ConfigProvider>
                 {children}
-              </ConfigProvider>
             </ReduxProvider>
         </body>
     </html>
